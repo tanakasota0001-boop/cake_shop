@@ -1,0 +1,142 @@
+---
+import { siteConfig } from '../data/siteConfig';
+const { specialite: specImg } = siteConfig.images;
+const { specialite: specText } = siteConfig.content;
+---
+
+<section id="specialty" class="py-24 sm:py-32 bg-noir-950 text-cream-50 relative overflow-hidden">
+  <!-- Ambient background glow -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gold-600/10 blur-[140px] pointer-events-none rounded-full"></div>
+
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 scroll-fade-in">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-20 sm:mb-28">
+      <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-400 block">{specText.badge}</span>
+      <h2 class="text-3xl sm:text-5xl font-serif-title tracking-ultra-wide font-light uppercase">
+        {specText.titleEn}
+      </h2>
+      <div class="w-12 h-[1px] bg-gold-400/80 mx-auto"></div>
+      <p class="font-serif-jp text-sm text-stone-400 tracking-widest pt-2">{specText.subtitleJa}</p>
+    </div>
+
+    <!-- Feature 1: The Main Specialite -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24 sm:mb-32">
+      <div class="lg:col-span-6 order-2 lg:order-1 space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-sans tracking-ultra-wide uppercase text-gold-400">{specImg.featureMain.tag}</span>
+          <span class="w-8 h-[1px] bg-gold-400/40"></span>
+        </div>
+        <h3 class="text-3xl sm:text-4xl font-serif-jp font-light leading-snug">
+          {specImg.featureMain.nameJa}
+        </h3>
+        <p class="text-stone-300 font-serif-jp text-sm sm:text-base leading-relaxed tracking-wide">
+          {specImg.featureMain.desc}
+        </p>
+
+        <div class="pt-2 flex flex-wrap gap-4 items-center">
+          <span class="text-xs text-stone-400 tracking-wider">{specImg.featureMain.price}</span>
+          <button
+            type="button"
+            onclick={`openProductModal('${specImg.featureMain.productId}')`}
+            class="inline-flex items-center gap-2 text-xs tracking-widest text-gold-400 hover:text-gold-300 transition-colors uppercase underline underline-offset-4"
+          >
+            詳細を見る
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 order-1 lg:order-2">
+        <div class="relative group overflow-hidden shadow-2xl border border-white/10">
+          <img
+            src={specImg.featureMain.image}
+            alt={specImg.featureMain.nameJa}
+            class="w-full h-[400px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-noir-950/70 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+            <div>
+              <p class="text-xs tracking-widest uppercase font-sans text-gold-400">Signature Cake</p>
+              <p class="text-lg font-serif-jp text-cream-50">{specImg.featureMain.nameEn}</p>
+            </div>
+            <span class="text-sm font-sans tracking-wider text-cream-100/90">{specImg.featureMain.priceShort}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Sub-Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12">
+      <!-- Sub Card 1 -->
+      <div class="bg-noir-900/60 border border-white/10 p-6 sm:p-8 space-y-6 flex flex-col justify-between group hover:border-gold-400/40 transition-all duration-300">
+        <div class="space-y-4">
+          <div class="relative overflow-hidden aspect-[4/3] mb-4">
+            <img
+              src={specImg.subCard1.image}
+              alt={specImg.subCard1.nameJa}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute top-3 left-3 bg-noir-950/80 backdrop-blur-md px-3 py-1 border border-gold-400/30 text-[10px] tracking-widest text-gold-400 uppercase">
+              {specImg.subCard1.badge}
+            </div>
+          </div>
+          <div>
+            <span class="text-[10px] font-sans tracking-ultra-wide uppercase text-stone-400">{specImg.subCard1.categoryText}</span>
+            <h3 class="text-2xl font-serif-jp text-cream-50 font-light mt-1">{specImg.subCard1.nameJa}</h3>
+            <p class="text-xs font-sans tracking-wider text-gold-400 mt-0.5">{specImg.subCard1.nameEn}</p>
+          </div>
+          <p class="text-stone-300 font-serif-jp text-xs sm:text-sm leading-relaxed">
+            {specImg.subCard1.desc}
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+          <span class="text-sm font-sans tracking-wider text-cream-200">{specImg.subCard1.price} <span class="text-[10px] text-stone-400">(税込)</span></span>
+          <button
+            type="button"
+            onclick={`openProductModal('${specImg.subCard1.productId}')`}
+            class="text-xs tracking-widest text-gold-400 hover:text-gold-300 underline underline-offset-4"
+          >
+            詳細を見る
+          </button>
+        </div>
+      </div>
+
+      <!-- Sub Card 2 -->
+      <div class="bg-noir-900/60 border border-white/10 p-6 sm:p-8 space-y-6 flex flex-col justify-between group hover:border-gold-400/40 transition-all duration-300">
+        <div class="space-y-4">
+          <div class="relative overflow-hidden aspect-[4/3] mb-4">
+            <img
+              src={specImg.subCard2.image}
+              alt={specImg.subCard2.nameJa}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute top-3 left-3 bg-noir-950/80 backdrop-blur-md px-3 py-1 border border-gold-400/30 text-[10px] tracking-widest text-gold-400 uppercase">
+              {specImg.subCard2.badge}
+            </div>
+          </div>
+          <div>
+            <span class="text-[10px] font-sans tracking-ultra-wide uppercase text-stone-400">{specImg.subCard2.categoryText}</span>
+            <h3 class="text-2xl font-serif-jp text-cream-50 font-light mt-1">{specImg.subCard2.nameJa}</h3>
+            <p class="text-xs font-sans tracking-wider text-gold-400 mt-0.5">{specImg.subCard2.nameEn}</p>
+          </div>
+          <p class="text-stone-300 font-serif-jp text-xs sm:text-sm leading-relaxed">
+            {specImg.subCard2.desc}
+          </p>
+        </div>
+        <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+          <span class="text-sm font-sans tracking-wider text-cream-200">
+            {specImg.subCard2.price} 
+            {specImg.subCard2.priceNote && <span class="text-[10px] text-stone-400 ml-1">{specImg.subCard2.priceNote}</span>}
+          </span>
+          <button
+            type="button"
+            onclick={`openProductModal('${specImg.subCard2.productId}')`}
+            class="text-xs tracking-widest text-gold-400 hover:text-gold-300 underline underline-offset-4"
+          >
+            詳細を見る
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

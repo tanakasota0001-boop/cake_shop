@@ -1,0 +1,137 @@
+---
+import { siteConfig } from '../data/siteConfig';
+const { heroSlides } = siteConfig.images;
+const { tagline } = siteConfig.store;
+---
+
+<section class="relative h-[85vh] min-h-[560px] max-h-[900px] w-full overflow-hidden bg-noir-950">
+  <!-- Slides Container -->
+  <div id="hero-slider" class="relative w-full h-full">
+    {heroSlides.map((slide, index) => (
+      <div
+        class={`hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+        }`}
+        data-slide-index={index}
+      >
+        <!-- Background Image with subtle zoom effect -->
+        <div class="absolute inset-0 overflow-hidden">
+          <img
+            src={slide.url}
+            alt={slide.subTitle}
+            class="w-full h-full object-cover object-center scale-105 transition-transform duration-[8000ms] ease-out transform hero-bg-img"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-noir-950/85 via-noir-950/30 to-noir-950/60"></div>
+          <div class="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
+        </div>
+
+        <!-- Slide Content -->
+        <div class="relative max-w-7xl mx-auto h-full px-6 sm:px-8 lg:px-12 flex flex-col justify-end pb-20 sm:pb-24 z-20 text-cream-50">
+          <div class="max-w-2xl space-y-4">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-[1px] bg-gold-400"></span>
+              <span class="text-gold-400 text-xs tracking-ultra-wide uppercase font-sans font-medium">
+                {slide.tag}
+              </span>
+            </div>
+            
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif-jp font-light leading-tight tracking-wide whitespace-pre-line drop-shadow-md">
+              {slide.title}
+            </h1>
+
+            <p class="text-sm font-sans tracking-mega-wide uppercase text-cream-200/80 pt-1">
+              {slide.subTitle}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Vertical Calligraphy Accent (Right Side) -->
+  <div class="hidden lg:block absolute top-24 right-12 z-20 pointer-events-none">
+    <div class="writing-vertical-rl font-serif-jp text-xs tracking-ultra-wide text-cream-200/60 select-none border-l border-cream-200/20 pl-4 py-4 backdrop-blur-sm">
+      {tagline}
+    </div>
+  </div>
+
+  <!-- Slide Navigation & Progress -->
+  <div class="absolute bottom-8 left-6 sm:left-12 z-30 flex items-center space-x-6 text-cream-50">
+    <div class="flex space-x-2" id="hero-dots">
+      {heroSlides.map((_, index) => (
+        <button
+          type="button"
+          class={`hero-dot h-1.5 transition-all duration-300 rounded-full ${
+            index === 0 ? 'w-8 bg-gold-400' : 'w-2 bg-cream-50/40'
+          }`}
+          data-target={index}
+          aria-label={`スライド ${index + 1}`}
+        ></button>
+      ))}
+    </div>
+    <div class="text-xs tracking-widest font-sans text-cream-200/70">
+      <span id="hero-current-num" class="text-gold-400 font-medium">01</span>
+      <span class="mx-1 opacity-40">/</span>
+      <span>{String(heroSlides.length).padStart(2, '0')}</span>
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="absolute bottom-6 right-6 sm:right-12 z-30 flex flex-col items-center">
+    <a href="#concept" class="group flex flex-col items-center gap-2 text-cream-50/70 hover:text-gold-400 transition-colors">
+      <span class="text-[10px] tracking-mega-wide uppercase font-sans">Scroll</span>
+      <div class="w-[1px] h-10 bg-cream-50/30 overflow-hidden relative">
+        <div class="w-full h-1/2 bg-gold-400 animate-pulse"></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<script is:inline>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  const currentNumEl = document.getElementById('hero-current-num');
+  const totalSlides = slides.length;
+  let slideInterval;
+
+  function goToSlide(index) {
+    slides[currentSlide].classList.remove('opacity-100', 'z-10');
+    slides[currentSlide].classList.add('opacity-0', 'z-0', 'pointer-events-none');
+    dots[currentSlide].classList.remove('w-8', 'bg-gold-400');
+    dots[currentSlide].classList.add('w-2', 'bg-cream-50/40');
+
+    currentSlide = (index + totalSlides) % totalSlides;
+
+    slides[currentSlide].classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+    slides[currentSlide].classList.add('opacity-100', 'z-10');
+    dots[currentSlide].classList.remove('w-2', 'bg-cream-50/40');
+    dots[currentSlide].classList.add('w-8', 'bg-gold-400');
+
+    if (currentNumEl) {
+      currentNumEl.textContent = String(currentSlide + 1).padStart(2, '0');
+    }
+  }
+
+  function nextSlide() {
+    goToSlide(currentSlide + 1);
+  }
+
+  function startSlideTimer() {
+    stopSlideTimer();
+    slideInterval = setInterval(nextSlide, 6000);
+  }
+
+  function stopSlideTimer() {
+    if (slideInterval) clearInterval(slideInterval);
+  }
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      goToSlide(idx);
+      startSlideTimer();
+    });
+  });
+
+  startSlideTimer();
+</script>

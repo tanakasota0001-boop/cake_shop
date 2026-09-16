@@ -1,0 +1,55 @@
+---
+import { siteConfig } from '../data/siteConfig';
+const { about: aboutImg } = siteConfig.images;
+const { about: aboutText } = siteConfig.content;
+const { store } = siteConfig;
+---
+
+<section id="about" class="py-24 sm:py-32 bg-cream-200 text-noir-900 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Chef / Atelier Image Left -->
+      <div class="lg:col-span-6 relative">
+        <div class="relative overflow-hidden shadow-2xl border border-stone-300">
+          <img
+            src={aboutImg.image}
+            alt="Pastry Chef at Kitchen"
+            class="w-full h-[460px] sm:h-[560px] object-cover object-top hover:scale-102 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-noir-950/60 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 text-cream-50">
+            <p class="text-xs font-sans tracking-mega-wide uppercase text-gold-400">Chef & Artisan</p>
+            <p class="text-2xl font-serif-jp tracking-wider">{aboutImg.roleText}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message Right -->
+      <div class="lg:col-span-6 space-y-8">
+        <div class="space-y-3">
+          <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-600 block">{aboutText.badge}</span>
+          <h2 class="text-3xl sm:text-4xl font-serif-jp font-light leading-snug whitespace-pre-line">
+            {aboutText.titleJa}
+          </h2>
+          <div class="w-12 h-[1px] bg-gold-400 pt-1"></div>
+        </div>
+
+        <div class="space-y-5 text-stone-700 font-serif-jp text-sm sm:text-base leading-loose tracking-wide">
+          {aboutText.paragraphs.map(p => (
+            <p>{p}</p>
+          ))}
+        </div>
+
+        <div class="pt-6 border-t border-stone-300/80 flex items-center justify-between">
+          <div>
+            <p class="text-xs font-sans tracking-ultra-wide uppercase text-stone-500">{aboutText.atelierLabel}</p>
+            <p class="text-xl font-serif-title tracking-wider text-noir-900">{store.nameEn}</p>
+          </div>
+          <div class="font-serif-title italic text-2xl text-stone-400 select-none">
+            {aboutText.englishTagline}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

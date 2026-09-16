@@ -1,0 +1,243 @@
+---
+import { siteConfig } from '../data/siteConfig';
+const { store } = siteConfig;
+const { store: storeText } = siteConfig.content;
+---
+
+<section id="store" class="py-24 sm:py-32 bg-cream-100 text-noir-900 relative">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-16 sm:mb-20">
+      <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-600 block">{storeText.badge}</span>
+      <h2 class="text-3xl sm:text-5xl font-serif-title tracking-ultra-wide font-light uppercase">
+        {storeText.titleEn}
+      </h2>
+      <div class="w-12 h-[1px] bg-gold-400 mx-auto"></div>
+      <p class="font-serif-jp text-sm text-stone-600 tracking-widest pt-2">{storeText.subtitleJa}</p>
+    </div>
+
+    <!-- Store Info & Calendar Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
+      <!-- Info Left -->
+      <div class="lg:col-span-6 space-y-8">
+        <div class="bg-cream-50 p-8 sm:p-10 border border-stone-200 shadow-sm space-y-6">
+          <div>
+            <span class="text-[10px] font-sans tracking-mega-wide uppercase text-gold-600 block mb-1">{store.nameEn}</span>
+            <h3 class="text-2xl font-serif-jp text-stone-900 font-medium">{store.nameJa}</h3>
+            <p class="text-xs text-stone-500 font-sans tracking-wider mt-1">{store.subtitle}</p>
+          </div>
+
+          <dl class="divide-y divide-stone-200/80 text-xs sm:text-sm font-serif-jp">
+            <div class="py-3.5 grid grid-cols-3 gap-4">
+              <dt class="text-stone-500 font-sans tracking-wider uppercase">住所</dt>
+              <dd class="col-span-2 text-stone-900 font-light">
+                〒{store.postalCode}<br />
+                {store.address}
+              </dd>
+            </div>
+            <div class="py-3.5 grid grid-cols-3 gap-4 items-center">
+              <dt class="text-stone-500 font-sans tracking-wider uppercase">電話番号</dt>
+              <dd class="col-span-2 text-stone-900 font-sans font-medium">
+                <a href={`tel:${store.tel.replace(/-/g, '')}`} class="hover:text-gold-600 transition-colors inline-flex items-center gap-2">
+                  <svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                  {store.tel}
+                </a>
+              </dd>
+            </div>
+            <div class="py-3.5 grid grid-cols-3 gap-4">
+              <dt class="text-stone-500 font-sans tracking-wider uppercase">営業時間</dt>
+              <dd class="col-span-2 text-stone-900 font-light">
+                {store.businessHours}<br />
+                <span class="text-[11px] text-stone-500">{store.businessHoursNote}</span>
+              </dd>
+            </div>
+            <div class="py-3.5 grid grid-cols-3 gap-4">
+              <dt class="text-stone-500 font-sans tracking-wider uppercase">定休日</dt>
+              <dd class="col-span-2 text-stone-900 font-light">
+                {store.holidays}<br />
+                <span class="text-[11px] text-stone-500">{store.holidaysNote}</span>
+              </dd>
+            </div>
+            <div class="py-3.5 grid grid-cols-3 gap-4">
+              <dt class="text-stone-500 font-sans tracking-wider uppercase">アクセス</dt>
+              <dd class="col-span-2 text-stone-900 font-light space-y-1">
+                {store.accessList.map(item => (
+                  <p>• {item}</p>
+                ))}
+              </dd>
+            </div>
+          </dl>
+
+          <div class="pt-2 flex flex-wrap gap-4">
+            <button
+              type="button"
+              onclick="openContactModal()"
+              class="inline-flex items-center gap-2 px-5 py-2.5 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors"
+            >
+              お問い合わせ
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Calendar Right -->
+      <div class="lg:col-span-6 space-y-4">
+        <div class="bg-cream-50 p-6 sm:p-8 border border-stone-200 shadow-sm">
+          <div class="flex justify-between items-center mb-6">
+            <div>
+              <span class="text-[10px] font-sans tracking-mega-wide uppercase text-gold-600 block">Calendar</span>
+              <h4 class="text-xl font-serif-jp text-stone-900 font-medium">{storeText.calendarTitle}</h4>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button
+                type="button"
+                id="cal-prev-btn"
+                class="p-1.5 rounded border border-stone-300 hover:bg-stone-100 text-stone-600 transition-colors"
+                aria-label="前月"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <span id="cal-month-title" class="text-sm font-sans font-medium text-stone-800 px-2 min-w-[90px] text-center"></span>
+              <button
+                type="button"
+                id="cal-next-btn"
+                class="p-1.5 rounded border border-stone-300 hover:bg-stone-100 text-stone-600 transition-colors"
+                aria-label="次月"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Calendar Days Grid -->
+          <div class="calendar-wrapper">
+            <div class="grid grid-cols-7 gap-1 text-center font-sans text-xs text-stone-400 mb-2 font-medium">
+              <span class="text-berry-700">日</span>
+              <span>月</span>
+              <span>火</span>
+              <span>水</span>
+              <span>木</span>
+              <span>金</span>
+              <span class="text-blue-600">土</span>
+            </div>
+            <div id="calendar-days-container" class="grid grid-cols-7 gap-1 text-center font-sans text-xs"></div>
+          </div>
+
+          <!-- Calendar Legend -->
+          <div class="mt-6 pt-4 border-t border-stone-200 flex flex-wrap items-center justify-between text-xs text-stone-600 gap-4 font-serif-jp">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-berry-700/20 border border-berry-700/50"></span>
+              <span>{storeText.legendHoliday}（{store.holidays}）</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-gold-400/30 border border-gold-500"></span>
+              <span>{storeText.legendToday}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map Frame -->
+    <div class="relative w-full h-[360px] sm:h-[440px] bg-stone-200 border border-stone-300 overflow-hidden shadow-lg rounded-sm">
+      <iframe
+        src={store.googleMapsEmbedUrl}
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="店舗所在地マップ"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Inject weekly holiday days for script -->
+<script define:vars={{ weeklyHolidayDays: store.weeklyHolidayDays }}>
+  window.__WEEKLY_HOLIDAYS__ = weeklyHolidayDays || [2, 3];
+</script>
+
+<script is:inline>
+  let currentCalDate = new Date();
+  let viewYear = currentCalDate.getFullYear();
+  let viewMonth = currentCalDate.getMonth();
+
+  function isStoreHoliday(year, month, day) {
+    const d = new Date(year, month, day);
+    const dayOfWeek = d.getDay(); // 0: Sun, 1: Mon, 2: Tue...
+    const holidays = window.__WEEKLY_HOLIDAYS__ || [2, 3];
+    return holidays.includes(dayOfWeek);
+  }
+
+  function renderCalendar(year, month) {
+    const container = document.getElementById('calendar-days-container');
+    const title = document.getElementById('cal-month-title');
+    if (!container || !title) return;
+
+    title.textContent = `${year}年 ${month + 1}月`;
+    container.innerHTML = '';
+
+    const firstDayIndex = new Date(year, month, 1).getDay();
+    const lastDayDate = new Date(year, month + 1, 0).getDate();
+
+    for (let i = 0; i < firstDayIndex; i++) {
+      const emptyCell = document.createElement('div');
+      emptyCell.className = 'h-9 text-stone-300 flex items-center justify-center';
+      container.appendChild(emptyCell);
+    }
+
+    const today = new Date();
+    const isThisMonth = today.getFullYear() === year && today.getMonth() === month;
+
+    for (let day = 1; day <= lastDayDate; day++) {
+      const dayCell = document.createElement('div');
+      const isHoliday = isStoreHoliday(year, month, day);
+      const isCurrentDay = isThisMonth && today.getDate() === day;
+      const dayOfWeek = new Date(year, month, day).getDay();
+
+      let cellClass = 'h-9 flex flex-col items-center justify-center rounded-sm transition-colors text-xs ';
+
+      if (isCurrentDay) {
+        cellClass += 'ring-1 ring-gold-500 font-bold bg-gold-400/10 ';
+      }
+
+      if (isHoliday) {
+        cellClass += 'bg-berry-700/10 text-berry-800 font-medium ';
+      } else {
+        if (dayOfWeek === 0) cellClass += 'text-berry-700 ';
+        else if (dayOfWeek === 6) cellClass += 'text-blue-600 ';
+        else cellClass += 'text-stone-800 hover:bg-stone-100 ';
+      }
+
+      dayCell.className = cellClass;
+      dayCell.innerHTML = `
+        <span>${day}</span>
+        ${isHoliday ? '<span class="text-[8px] scale-90 leading-none text-berry-700/80">休</span>' : ''}
+      `;
+
+      container.appendChild(dayCell);
+    }
+  }
+
+  document.getElementById('cal-prev-btn')?.addEventListener('click', () => {
+    viewMonth--;
+    if (viewMonth < 0) {
+      viewMonth = 11;
+      viewYear--;
+    }
+    renderCalendar(viewYear, viewMonth);
+  });
+
+  document.getElementById('cal-next-btn')?.addEventListener('click', () => {
+    viewMonth++;
+    if (viewMonth > 11) {
+      viewMonth = 0;
+      viewYear++;
+    }
+    renderCalendar(viewYear, viewMonth);
+  });
+
+  renderCalendar(viewYear, viewMonth);
+</script>

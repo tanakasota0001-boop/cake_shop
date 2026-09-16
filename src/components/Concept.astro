@@ -1,0 +1,76 @@
+---
+import { siteConfig } from '../data/siteConfig';
+const { concept: conceptImg } = siteConfig.images;
+const { concept: conceptText } = siteConfig.content;
+---
+
+<section id="concept" class="py-24 sm:py-32 bg-cream-100 text-noir-900 relative overflow-hidden">
+  <!-- Decorative watermark -->
+  <div class="absolute -right-16 top-1/2 -translate-y-1/2 pointer-events-none opacity-[0.03] select-none">
+    <span class="font-serif text-[18rem] leading-none">Pastry</span>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in">
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-16 sm:mb-24">
+      <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-600 block">{conceptText.badge}</span>
+      <h2 class="text-3xl sm:text-4xl font-serif-title tracking-ultra-wide font-light uppercase">
+        {conceptText.titleEn}
+      </h2>
+      <div class="w-12 h-[1px] bg-gold-400 mx-auto"></div>
+      <p class="font-serif-jp text-sm text-stone-600 tracking-widest pt-2">{conceptText.titleJa}</p>
+    </div>
+
+    <!-- Editorial Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Image Left -->
+      <div class="lg:col-span-6 relative">
+        <div class="relative z-10 overflow-hidden shadow-2xl">
+          <img
+            src={conceptImg.main}
+            alt="Pastry Chef crafting cakes"
+            class="w-full h-[440px] sm:h-[520px] object-cover hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+        <!-- Floating secondary small image -->
+        <div class="hidden sm:block absolute -bottom-8 -right-8 w-52 h-52 z-20 overflow-hidden border-4 border-cream-100 shadow-xl">
+          <img
+            src={conceptImg.sub}
+            alt="Handcrafted pastry details"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="absolute -top-4 -left-4 w-24 h-24 border-t border-l border-gold-400/40 pointer-events-none"></div>
+      </div>
+
+      <!-- Text Right -->
+      <div class="lg:col-span-6 space-y-8 lg:pl-6">
+        <div class="space-y-4">
+          <h3 class="text-2xl sm:text-3xl font-serif-jp font-light leading-relaxed tracking-wide text-noir-900">
+            {conceptText.lead}
+          </h3>
+          {conceptText.paragraphs.map(p => (
+            <p class="text-stone-600 font-serif-jp text-sm sm:text-base leading-relaxed tracking-wide">
+              {p}
+            </p>
+          ))}
+        </div>
+
+        <!-- 3 Pillars of Quality -->
+        <div class="border-t border-stone-200/80 pt-8 space-y-6">
+          <h4 class="text-xs font-sans tracking-ultra-wide uppercase text-stone-500 font-semibold">Our 3 Promises</h4>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {conceptText.promises.map(item => (
+              <div class="space-y-2">
+                <span class="text-gold-600 font-serif-title text-xl block">{item.num}</span>
+                <h5 class="text-xs font-medium text-stone-900 tracking-wider">{item.title}</h5>
+                <p class="text-xs text-stone-500 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,314 @@
+---
+import { products, categories } from '../data/products';
+import { siteConfig } from '../data/siteConfig';
+const { menu } = siteConfig.content;
+---
+
+<section id="collection" class="py-24 sm:py-32 bg-cream-50 text-noir-900 relative">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-16 sm:mb-20">
+      <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-600 block">{menu.badge}</span>
+      <h2 class="text-3xl sm:text-5xl font-serif-title tracking-ultra-wide font-light uppercase">
+        {menu.titleEn}
+      </h2>
+      <div class="w-12 h-[1px] bg-gold-400 mx-auto"></div>
+      <p class="font-serif-jp text-sm text-stone-600 tracking-widest pt-2">
+        {menu.subtitleJa}
+      </p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 mb-16" id="category-filter-tabs">
+      {categories.map((cat, idx) => (
+        <button
+          type="button"
+          class={`cat-tab px-5 py-2 text-xs font-sans tracking-widest uppercase transition-all duration-300 border ${
+            idx === 0
+              ? 'bg-noir-900 text-cream-50 border-noir-900 shadow-sm'
+              : 'bg-transparent text-stone-600 border-stone-300 hover:border-stone-800'
+          }`}
+          data-category={cat.id}
+        >
+          <span class="font-medium">{cat.label}</span>
+          <span class="text-[10px] opacity-70 ml-1">({cat.subLabel})</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
+      {products.map(product => (
+        <div
+          class="product-item group cursor-pointer flex flex-col bg-cream-100 border border-stone-200/80 hover:border-gold-400/60 transition-all duration-300 shadow-sm hover:shadow-xl rounded-sm overflow-hidden"
+          data-category={product.category}
+          data-product-id={product.id}
+          onclick={`openProductModal('${product.id}')`}
+        >
+          <!-- Thumbnail with hover zoom -->
+          <div class="relative aspect-square overflow-hidden bg-stone-200">
+            <img
+              src={product.image}
+              alt={product.name}
+              loading="lazy"
+              class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+            />
+            {product.isSpecialite && (
+              <div class="absolute top-3 left-3 bg-noir-900/90 text-gold-400 text-[10px] font-sans tracking-widest uppercase px-2.5 py-0.5 border border-gold-400/30">
+                Specialty
+              </div>
+            )}
+            {product.isSeasonal && (
+              <div class="absolute top-3 left-3 bg-berry-700 text-cream-50 text-[10px] font-sans tracking-widest uppercase px-2.5 py-0.5">
+                Seasonal
+              </div>
+            )}
+            <!-- Quick View Overlay -->
+            <div class="absolute inset-0 bg-noir-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="px-4 py-1.5 bg-cream-50/90 text-noir-900 text-xs font-sans tracking-widest uppercase font-medium backdrop-blur-sm shadow-md">
+                詳細を見る
+              </span>
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[10px] font-sans tracking-widest text-stone-400 uppercase block mb-1">
+                {product.categoryLabel}
+              </span>
+              <h3 class="text-base font-serif-jp font-medium text-stone-900 group-hover:text-gold-600 transition-colors line-clamp-1">
+                {product.name}
+              </h3>
+              <p class="text-[11px] font-sans text-stone-500 tracking-wider truncate">
+                {product.englishName}
+              </p>
+            </div>
+
+            <div class="pt-2 border-t border-stone-200 flex justify-between items-center text-xs">
+              <span class="font-sans font-medium text-stone-800 tracking-wider">
+                {product.price}
+              </span>
+              <span class="text-gold-600 group-hover:translate-x-1 transition-transform">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Notice Box below Collection -->
+    <div class="mt-16 p-6 sm:p-8 bg-cream-200 border border-stone-300/70 rounded-sm text-stone-700 font-serif-jp text-xs sm:text-sm leading-relaxed space-y-3 text-center max-w-3xl mx-auto">
+      <p class="font-medium text-stone-900">
+        {menu.noticeBoxTitle}
+      </p>
+      <p>
+        {menu.noticeBoxText}
+      </p>
+      <div class="pt-2">
+        <button
+          type="button"
+          onclick="openContactModal()"
+          class="inline-flex items-center gap-2 px-6 py-2.5 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors"
+        >
+          {menu.ctaButton}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Product Detail Modal -->
+<div
+  id="product-modal"
+  class="fixed inset-0 z-50 overflow-y-auto hidden"
+  style="display: none;"
+  aria-modal="true"
+  role="dialog"
+>
+  <!-- Backdrop -->
+  <div
+    id="product-modal-backdrop"
+    class="fixed inset-0 bg-noir-950/85 backdrop-blur-sm transition-opacity"
+    onclick="closeProductModal()"
+  ></div>
+
+  <!-- Screen Fixed Close Button -->
+  <button
+    type="button"
+    onclick="closeProductModal()"
+    class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2 px-4 py-2 bg-cream-50/95 hover:bg-noir-900 hover:text-cream-50 text-stone-900 text-xs font-sans tracking-widest uppercase rounded-full shadow-2xl transition-all duration-200 border border-stone-300 group"
+    aria-label="閉じる"
+  >
+    <svg class="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    <span class="font-medium">閉じる</span>
+  </button>
+
+  <!-- Modal Container -->
+  <div class="min-h-full flex items-center justify-center p-4 sm:p-6 text-center">
+    <div
+      id="product-modal-card"
+      class="relative bg-cream-100 max-w-3xl w-full text-left rounded-sm shadow-2xl border border-stone-300 overflow-hidden flex flex-col md:flex-row my-8 z-10"
+      onclick="event.stopPropagation()"
+    >
+      <!-- Modal Image -->
+      <div class="md:w-1/2 aspect-square md:aspect-auto relative bg-stone-200">
+        <img
+          id="modal-image"
+          src=""
+          alt=""
+          class="w-full h-full object-cover min-h-[280px]"
+        />
+        <div id="modal-badge-container" class="absolute top-4 left-4 flex gap-2"></div>
+      </div>
+
+      <!-- Modal Info -->
+      <div class="p-6 sm:p-8 md:w-1/2 flex flex-col justify-between space-y-6">
+        <div class="space-y-4">
+          <div>
+            <span id="modal-category" class="text-[10px] font-sans tracking-ultra-wide uppercase text-gold-600 block mb-1"></span>
+            <h3 id="modal-title" class="text-2xl font-serif-jp text-noir-900 font-medium leading-snug"></h3>
+            <p id="modal-english-name" class="text-xs font-sans tracking-wider text-stone-500 mt-1"></p>
+          </div>
+
+          <div class="text-lg font-sans font-medium text-stone-900 border-b border-stone-200 pb-3">
+            <span id="modal-price"></span>
+            <span class="text-xs text-stone-400 font-normal ml-1">（税込）</span>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-sans tracking-widest uppercase text-stone-400 mb-1">Description</h4>
+            <p id="modal-desc" class="text-stone-700 font-serif-jp text-xs sm:text-sm leading-relaxed"></p>
+          </div>
+
+          <div id="modal-flavornote-wrapper">
+            <h4 class="text-xs font-sans tracking-widest uppercase text-stone-400 mb-1">Flavor Note</h4>
+            <p id="modal-flavornote" class="text-stone-600 font-serif-jp text-xs leading-relaxed italic bg-cream-200/60 p-2.5 border-l-2 border-gold-400"></p>
+          </div>
+
+          <div>
+            <h4 class="text-xs font-sans tracking-widest uppercase text-stone-400 mb-1.5">Key Ingredients</h4>
+            <div id="modal-ingredients" class="flex flex-wrap gap-1.5"></div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-stone-200 space-y-2">
+          <button
+            type="button"
+            onclick="openContactModal(); closeProductModal();"
+            class="w-full py-3 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors font-medium text-center flex items-center justify-center gap-2"
+          >
+            <span>商品について問い合わせる</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+          <button
+            type="button"
+            onclick="closeProductModal()"
+            class="w-full py-2 bg-stone-200 text-stone-700 hover:bg-stone-300 text-xs font-sans tracking-widest uppercase transition-colors rounded-sm text-center"
+          >
+            閉じる
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ products }}>
+  window.__PRODUCTS_DATA__ = products;
+</script>
+
+<script is:inline>
+  // Category filtering
+  const tabs = document.querySelectorAll('.cat-tab');
+  const items = document.querySelectorAll('.product-item');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('bg-noir-900', 'text-cream-50', 'border-noir-900', 'shadow-sm');
+        t.classList.add('bg-transparent', 'text-stone-600', 'border-stone-300');
+      });
+      tab.classList.add('bg-noir-900', 'text-cream-50', 'border-noir-900', 'shadow-sm');
+      tab.classList.remove('bg-transparent', 'text-stone-600', 'border-stone-300');
+
+      const selectedCategory = tab.getAttribute('data-category');
+
+      items.forEach(item => {
+        const itemCat = item.getAttribute('data-category');
+        if (selectedCategory === 'all' || itemCat === selectedCategory) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Modal logic
+  const modal = document.getElementById('product-modal');
+  const modalImage = document.getElementById('modal-image');
+  const modalCategory = document.getElementById('modal-category');
+  const modalTitle = document.getElementById('modal-title');
+  const modalEnglishName = document.getElementById('modal-english-name');
+  const modalPrice = document.getElementById('modal-price');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalFlavorNoteWrapper = document.getElementById('modal-flavornote-wrapper');
+  const modalFlavorNote = document.getElementById('modal-flavornote');
+  const modalIngredients = document.getElementById('modal-ingredients');
+  const modalBadgeContainer = document.getElementById('modal-badge-container');
+
+  window.openProductModal = function(productId) {
+    const p = window.__PRODUCTS_DATA__?.find(item => item.id === productId);
+    if (!p || !modal) return;
+
+    modalImage.src = p.image;
+    modalImage.alt = p.name;
+    modalCategory.textContent = p.categoryLabel;
+    modalTitle.textContent = p.name;
+    modalEnglishName.textContent = p.englishName;
+    modalPrice.textContent = p.price;
+    modalDesc.textContent = p.description;
+
+    if (p.flavorNote) {
+      modalFlavorNoteWrapper.style.display = 'block';
+      modalFlavorNote.textContent = p.flavorNote;
+    } else {
+      modalFlavorNoteWrapper.style.display = 'none';
+    }
+
+    modalIngredients.innerHTML = '';
+    p.ingredients.forEach(ing => {
+      const span = document.createElement('span');
+      span.className = 'text-[11px] bg-stone-200/80 text-stone-700 px-2.5 py-0.5 rounded-sm font-serif-jp';
+      span.textContent = ing;
+      modalIngredients.appendChild(span);
+    });
+
+    modalBadgeContainer.innerHTML = '';
+    if (p.isSpecialite) {
+      const b = document.createElement('span');
+      b.className = 'bg-noir-900 text-gold-400 text-[10px] tracking-widest uppercase px-2.5 py-0.5 border border-gold-400/30';
+      b.textContent = 'Specialty';
+      modalBadgeContainer.appendChild(b);
+    }
+    if (p.isSeasonal) {
+      const b = document.createElement('span');
+      b.className = 'bg-berry-700 text-cream-50 text-[10px] tracking-widest uppercase px-2.5 py-0.5';
+      b.textContent = 'Seasonal';
+      modalBadgeContainer.appendChild(b);
+    }
+
+    modal.classList.remove('hidden');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeProductModal = function() {
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  };
+</script>
