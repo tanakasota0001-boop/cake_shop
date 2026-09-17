@@ -55,22 +55,6 @@ const { tagline } = siteConfig.store;
     </div>
   </div>
 
-  <!-- Slide Navigation & Progress -->
-  <div class="absolute bottom-8 left-6 sm:left-12 z-30 flex items-center space-x-6 text-cream-50">
-    <div class="flex space-x-2" id="hero-dots">
-      {heroSlides.map((_, index) => (
-        <button
-          type="button"
-          class={`hero-dot h-1.5 transition-all duration-300 rounded-full ${
-            index === 0 ? 'w-8 bg-gold-400' : 'w-2 bg-cream-50/40'
-          }`}
-          data-target={index}
-          aria-label={`スライド ${index + 1}`}
-        ></button>
-      ))}
-    </div>
-  </div>
-
   <!-- Scroll Down Indicator -->
   <div class="absolute bottom-6 right-6 sm:right-12 z-30 flex flex-col items-center">
     <a href="#concept" class="group flex flex-col items-center gap-2 text-cream-50/70 hover:text-gold-400 transition-colors">
@@ -85,27 +69,17 @@ const { tagline } = siteConfig.store;
 <script is:inline>
   let currentSlide = 0;
   const slides = document.querySelectorAll('.hero-slide');
-  const dots = document.querySelectorAll('.hero-dot');
-  const currentNumEl = document.getElementById('hero-current-num');
   const totalSlides = slides.length;
   let slideInterval;
 
   function goToSlide(index) {
     slides[currentSlide].classList.remove('opacity-100', 'z-10');
     slides[currentSlide].classList.add('opacity-0', 'z-0', 'pointer-events-none');
-    dots[currentSlide].classList.remove('w-8', 'bg-gold-400');
-    dots[currentSlide].classList.add('w-2', 'bg-cream-50/40');
 
     currentSlide = (index + totalSlides) % totalSlides;
 
     slides[currentSlide].classList.remove('opacity-0', 'z-0', 'pointer-events-none');
     slides[currentSlide].classList.add('opacity-100', 'z-10');
-    dots[currentSlide].classList.remove('w-2', 'bg-cream-50/40');
-    dots[currentSlide].classList.add('w-8', 'bg-gold-400');
-
-    if (currentNumEl) {
-      currentNumEl.textContent = String(currentSlide + 1).padStart(2, '0');
-    }
   }
 
   function nextSlide() {
@@ -120,13 +94,6 @@ const { tagline } = siteConfig.store;
   function stopSlideTimer() {
     if (slideInterval) clearInterval(slideInterval);
   }
-
-  dots.forEach((dot, idx) => {
-    dot.addEventListener('click', () => {
-      goToSlide(idx);
-      startSlideTimer();
-    });
-  });
 
   startSlideTimer();
 </script>
