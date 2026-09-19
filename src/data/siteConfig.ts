@@ -229,8 +229,8 @@ export const siteConfig = {
     },
 
     store: {
-      badge: "店舗案内",
-      titleEn: "Store & Access",
+      badge: "店舗情報",
+      titleEn: "Store",
       subtitleJa: "店舗情報・営業案内・交通アクセス",
       calendarTitle: "営業カレンダー",
       legendHoliday: "定休日",
