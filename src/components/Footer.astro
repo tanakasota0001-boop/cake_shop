@@ -44,6 +44,7 @@ const { store } = siteConfig;
           </p>
           <p>営業時間：{store.businessHours}</p>
           <p>定休日：{store.holidays}</p>
+          {store.parking && <p>駐車場：{store.parking}</p>}
         </address>
 
         <div class="pt-2">

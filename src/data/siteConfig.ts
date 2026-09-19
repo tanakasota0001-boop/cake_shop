@@ -28,6 +28,7 @@ export const siteConfig = {
       "東急田園都市線「池尻大橋駅」東口 徒歩5分",
       "東急東横線・東京メトロ日比谷線「中目黒駅」徒歩10分"
     ],
+    parking: "専用駐車場 2台（店舗裏手） / 近隣にコインパーキングあり",
     instagramUrl: "https://www.instagram.com/",
     instagramAccountName: "@patisserie_official",
     googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.747975467362!2d139.7016358152589!3d35.65858048019951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b563b00109f%3A0x337328def1e1ab26!2z5riL6LC36aeF!5e0!3m2!1sja!2sjp!4v1600000000000!5m2!1sja!2sjp",
