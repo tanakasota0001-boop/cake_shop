@@ -105,21 +105,15 @@ const { specialite: specText } = siteConfig.content;
             <span class="text-[11px] font-sans tracking-wider px-3 py-1 bg-cream-200/80 text-stone-700 rounded-sm"># ウェディング</span>
           </div>
 
-          <!-- Buttons Group (Yann Couvreur Style) -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <!-- Reservation Button -->
+          <div class="pt-2">
             <button
               type="button"
               onclick="openContactModal('ホールケーキ・オーダーメイドのご予約・ご相談')"
-              class="w-full sm:w-auto px-7 py-3.5 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors font-medium rounded-sm shadow-sm"
+              class="w-full sm:w-auto px-8 py-3.5 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors font-medium rounded-sm shadow-sm"
             >
               {specText.catalogBtn}
             </button>
-            <a
-              href="#collection"
-              class="w-full sm:w-auto px-6 py-3.5 text-xs font-sans tracking-widest uppercase text-stone-700 hover:text-stone-950 border border-stone-300 hover:border-stone-800 transition-all rounded-sm text-center"
-            >
-              {specText.menuLink}
-            </a>
           </div>
 
           <p class="text-[11px] text-stone-400 font-serif-jp pt-2">
