@@ -6,27 +6,27 @@ const { specialite: specText } = siteConfig.content;
 
 <section id="specialty" class="py-24 sm:py-32 bg-noir-950 text-cream-50 relative overflow-hidden">
   <!-- Ambient background glow -->
-  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gold-600/10 blur-[140px] pointer-events-none rounded-full"></div>
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-gold-600/10 blur-[160px] pointer-events-none rounded-full"></div>
 
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 scroll-fade-in">
+  <div class="max-w-[1560px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10 scroll-fade-in">
     <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto space-y-3 mb-20 sm:mb-28">
+    <div class="text-center max-w-3xl mx-auto space-y-3 mb-20 sm:mb-28">
       <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-400 block">{specText.badge}</span>
-      <h2 class="text-3xl sm:text-5xl font-serif-title tracking-ultra-wide font-light uppercase">
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl font-serif-title tracking-ultra-wide font-light uppercase">
         {specText.titleEn}
       </h2>
       <div class="w-12 h-[1px] bg-gold-400/80 mx-auto"></div>
-      <p class="font-serif-jp text-sm text-stone-400 tracking-widest pt-2">{specText.subtitleJa}</p>
+      <p class="font-serif-jp text-sm sm:text-base text-stone-400 tracking-widest pt-2">{specText.subtitleJa}</p>
     </div>
 
     <!-- Feature 1: The Main Specialite -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24 sm:mb-32">
-      <div class="lg:col-span-6 order-2 lg:order-1 space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center mb-24 sm:mb-32">
+      <div class="lg:col-span-6 order-2 lg:order-1 space-y-6 lg:pr-6">
         <div class="flex items-center gap-3">
           <span class="text-xs font-sans tracking-ultra-wide uppercase text-gold-400">{specImg.featureMain.tag}</span>
           <span class="w-8 h-[1px] bg-gold-400/40"></span>
         </div>
-        <h3 class="text-3xl sm:text-4xl font-serif-jp font-light leading-snug">
+        <h3 class="text-3xl sm:text-4xl lg:text-5xl font-serif-jp font-light leading-snug">
           {specImg.featureMain.nameJa}
         </h3>
         <p class="text-stone-300 font-serif-jp text-sm sm:text-base leading-relaxed tracking-wide">
@@ -51,7 +51,7 @@ const { specialite: specText } = siteConfig.content;
           <img
             src={specImg.featureMain.image}
             alt={specImg.featureMain.nameJa}
-            class="w-full h-[400px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-700"
+            class="w-full h-[420px] sm:h-[520px] lg:h-[580px] object-cover group-hover:scale-105 transition-transform duration-700"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-noir-950/70 via-transparent to-transparent"></div>
           <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">

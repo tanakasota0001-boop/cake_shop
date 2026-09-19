@@ -6,26 +6,26 @@ const { store } = siteConfig;
 ---
 
 <section id="about" class="py-24 sm:py-32 bg-cream-200 text-noir-900 relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+  <div class="max-w-[1560px] mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
       <!-- Chef / Atelier Image Left -->
       <div class="lg:col-span-6 relative">
         <div class="relative overflow-hidden shadow-2xl border border-stone-300">
           <img
             src={aboutImg.image}
             alt="Pastry Chef at Kitchen"
-            class="w-full h-[460px] sm:h-[560px] object-cover object-top hover:scale-102 transition-transform duration-700"
+            class="w-full h-[500px] sm:h-[620px] object-cover object-top hover:scale-102 transition-transform duration-700"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-noir-950/60 via-transparent to-transparent"></div>
           <div class="absolute bottom-6 left-6 text-cream-50">
             <p class="text-xs font-sans tracking-mega-wide uppercase text-gold-400">Chef & Artisan</p>
-            <p class="text-2xl font-serif-jp tracking-wider">{aboutImg.roleText}</p>
+            <p class="text-2xl sm:text-3xl font-serif-jp tracking-wider">{aboutImg.roleText}</p>
           </div>
         </div>
       </div>
 
       <!-- Message Right -->
-      <div class="lg:col-span-6 space-y-8">
+      <div class="lg:col-span-6 space-y-8 lg:pl-4">
         <div class="space-y-3">
           <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-600 block">{aboutText.badge}</span>
           <h2 class="text-3xl sm:text-4xl font-serif-jp font-light leading-snug whitespace-pre-line">

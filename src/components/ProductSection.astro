@@ -5,15 +5,15 @@ const { menu } = siteConfig.content;
 ---
 
 <section id="collection" class="py-24 sm:py-32 bg-cream-50 text-noir-900 relative">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in">
+  <div class="max-w-[1560px] mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in">
     <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto space-y-3 mb-16 sm:mb-20">
+    <div class="text-center max-w-3xl mx-auto space-y-3 mb-16 sm:mb-20">
       <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-600 block">{menu.badge}</span>
-      <h2 class="text-3xl sm:text-5xl font-serif-title tracking-ultra-wide font-light uppercase">
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl font-serif-title tracking-ultra-wide font-light uppercase">
         {menu.titleEn}
       </h2>
       <div class="w-12 h-[1px] bg-gold-400 mx-auto"></div>
-      <p class="font-serif-jp text-sm text-stone-600 tracking-widest pt-2">
+      <p class="font-serif-jp text-sm sm:text-base text-stone-600 tracking-widest pt-2">
         {menu.subtitleJa}
       </p>
     </div>
@@ -23,7 +23,7 @@ const { menu } = siteConfig.content;
       {categories.map((cat, idx) => (
         <button
           type="button"
-          class={`cat-tab px-5 py-2 text-xs font-sans tracking-widest uppercase transition-all duration-300 border ${
+          class={`cat-tab px-6 py-2.5 text-xs font-sans tracking-widest uppercase transition-all duration-300 border ${
             idx === 0
               ? 'bg-noir-900 text-cream-50 border-noir-900 shadow-sm'
               : 'bg-transparent text-stone-600 border-stone-300 hover:border-stone-800'
@@ -37,7 +37,7 @@ const { menu } = siteConfig.content;
     </div>
 
     <!-- Products Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="products-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10" id="products-grid">
       {products.map(product => (
         <div
           class="product-item group cursor-pointer flex flex-col bg-cream-100 border border-stone-200/80 hover:border-gold-400/60 transition-all duration-300 shadow-sm hover:shadow-xl rounded-sm overflow-hidden"

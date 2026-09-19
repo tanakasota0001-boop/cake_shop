@@ -11,19 +11,19 @@ const loopedGallery = [...gallery, ...gallery];
 
 <section id="news" class="pt-24 sm:pt-32 pb-0 bg-cream-50 text-noir-900 border-t border-stone-200/60 overflow-hidden">
   <!-- News List Section (Standard Width Container) -->
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in mb-20 sm:mb-28">
+  <div class="max-w-[1560px] mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in mb-20 sm:mb-28">
     <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto space-y-3 mb-16 sm:mb-20">
+    <div class="text-center max-w-3xl mx-auto space-y-3 mb-16 sm:mb-20">
       <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-600 block">{newsText.badge}</span>
-      <h2 class="text-3xl sm:text-5xl font-serif-title tracking-ultra-wide font-light uppercase">
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl font-serif-title tracking-ultra-wide font-light uppercase">
         {newsText.titleEn}
       </h2>
       <div class="w-12 h-[1px] bg-gold-400 mx-auto"></div>
-      <p class="font-serif-jp text-sm text-stone-600 tracking-widest pt-2">{newsText.subtitleJa}</p>
+      <p class="font-serif-jp text-sm sm:text-base text-stone-600 tracking-widest pt-2">{newsText.subtitleJa}</p>
     </div>
 
     <!-- News List -->
-    <div class="max-w-4xl mx-auto divide-y divide-stone-200 border-y border-stone-200">
+    <div class="max-w-5xl mx-auto divide-y divide-stone-200 border-y border-stone-200">
       {newsItems.map(item => (
         <article class="py-6 sm:py-7 group hover:bg-cream-100/50 transition-colors px-4">
           <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6">
@@ -53,7 +53,7 @@ const loopedGallery = [...gallery, ...gallery];
   <!-- Full-Width Instagram Gallery Showcase -->
   <div class="w-full">
     <!-- Header info in center container -->
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-8 flex flex-col sm:flex-row justify-between items-center border-b border-stone-200 pb-4">
+    <div class="max-w-[1560px] mx-auto px-6 sm:px-8 lg:px-12 mb-8 flex flex-col sm:flex-row justify-between items-center border-b border-stone-200 pb-4">
       <div class="text-center sm:text-left">
         <span class="text-[10px] font-sans tracking-mega-wide uppercase text-gold-600 block">Social Media</span>
         <h3 class="text-xl sm:text-2xl font-serif-jp text-stone-900">{newsText.instagramTitle}</h3>
