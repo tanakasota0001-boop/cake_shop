@@ -139,16 +139,15 @@ const { menu } = siteConfig.content;
           id="modal-image"
           src=""
           alt=""
-          class="w-full h-full object-cover min-h-[280px]"
+          class="w-full h-full object-cover min-h-[300px]"
         />
-        <div id="modal-badge-container" class="absolute top-4 left-4 flex gap-2"></div>
       </div>
 
       <!-- Modal Info -->
       <div class="p-6 sm:p-8 md:w-1/2 flex flex-col justify-between space-y-6">
         <div class="space-y-4">
           <div>
-            <span id="modal-category" class="text-[10px] font-sans tracking-ultra-wide uppercase text-gold-600 block mb-1"></span>
+            <span id="modal-category" class="text-[11px] font-sans tracking-ultra-wide uppercase text-gold-600 block mb-1"></span>
             <h3 id="modal-title" class="text-2xl font-serif-jp text-noir-900 font-medium leading-snug"></h3>
             <p id="modal-english-name" class="text-xs font-sans tracking-wider text-stone-500 mt-1"></p>
           </div>
@@ -159,34 +158,15 @@ const { menu } = siteConfig.content;
           </div>
 
           <div>
-            <h4 class="text-xs font-sans tracking-widest uppercase text-stone-400 mb-1">Description</h4>
             <p id="modal-desc" class="text-stone-700 font-serif-jp text-xs sm:text-sm leading-relaxed"></p>
-          </div>
-
-          <div id="modal-flavornote-wrapper">
-            <h4 class="text-xs font-sans tracking-widest uppercase text-stone-400 mb-1">Flavor Note</h4>
-            <p id="modal-flavornote" class="text-stone-600 font-serif-jp text-xs leading-relaxed italic bg-cream-200/60 p-2.5 border-l-2 border-gold-400"></p>
-          </div>
-
-          <div>
-            <h4 class="text-xs font-sans tracking-widest uppercase text-stone-400 mb-1.5">Key Ingredients</h4>
-            <div id="modal-ingredients" class="flex flex-wrap gap-1.5"></div>
           </div>
         </div>
 
-        <div class="pt-4 border-t border-stone-200 space-y-2">
-          <button
-            type="button"
-            onclick="openContactModal(); closeProductModal();"
-            class="w-full py-3 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors font-medium text-center flex items-center justify-center gap-2"
-          >
-            <span>商品について問い合わせる</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-          </button>
+        <div class="pt-4 border-t border-stone-200">
           <button
             type="button"
             onclick="closeProductModal()"
-            class="w-full py-2 bg-stone-200 text-stone-700 hover:bg-stone-300 text-xs font-sans tracking-widest uppercase transition-colors rounded-sm text-center"
+            class="w-full py-2.5 bg-noir-900 text-cream-50 hover:bg-stone-800 text-xs font-sans tracking-widest uppercase transition-colors rounded-sm text-center"
           >
             閉じる
           </button>
@@ -235,10 +215,6 @@ const { menu } = siteConfig.content;
   const modalEnglishName = document.getElementById('modal-english-name');
   const modalPrice = document.getElementById('modal-price');
   const modalDesc = document.getElementById('modal-desc');
-  const modalFlavorNoteWrapper = document.getElementById('modal-flavornote-wrapper');
-  const modalFlavorNote = document.getElementById('modal-flavornote');
-  const modalIngredients = document.getElementById('modal-ingredients');
-  const modalBadgeContainer = document.getElementById('modal-badge-container');
 
   window.openProductModal = function(productId) {
     const p = window.__PRODUCTS_DATA__?.find(item => item.id === productId);
@@ -251,35 +227,6 @@ const { menu } = siteConfig.content;
     modalEnglishName.textContent = p.englishName;
     modalPrice.textContent = p.price;
     modalDesc.textContent = p.description;
-
-    if (p.flavorNote) {
-      modalFlavorNoteWrapper.style.display = 'block';
-      modalFlavorNote.textContent = p.flavorNote;
-    } else {
-      modalFlavorNoteWrapper.style.display = 'none';
-    }
-
-    modalIngredients.innerHTML = '';
-    p.ingredients.forEach(ing => {
-      const span = document.createElement('span');
-      span.className = 'text-[11px] bg-stone-200/80 text-stone-700 px-2.5 py-0.5 rounded-sm font-serif-jp';
-      span.textContent = ing;
-      modalIngredients.appendChild(span);
-    });
-
-    modalBadgeContainer.innerHTML = '';
-    if (p.isSpecialite) {
-      const b = document.createElement('span');
-      b.className = 'bg-noir-900 text-gold-400 text-[10px] tracking-widest uppercase px-2.5 py-0.5 border border-gold-400/30';
-      b.textContent = 'Specialty';
-      modalBadgeContainer.appendChild(b);
-    }
-    if (p.isSeasonal) {
-      const b = document.createElement('span');
-      b.className = 'bg-berry-700 text-cream-50 text-[10px] tracking-widest uppercase px-2.5 py-0.5';
-      b.textContent = 'Seasonal';
-      modalBadgeContainer.appendChild(b);
-    }
 
     modal.classList.remove('hidden');
     modal.style.display = 'block';
