@@ -5,8 +5,8 @@ const { store } = siteConfig;
 
 <!-- Header Wrapper: Fixed overlay with dynamic translateY for show/hide behavior -->
 <div id="header-wrapper" class="fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ease-out text-cream-50 bg-transparent">
-  <!-- Announcement Bar (Desktop) - Smooth collapsible top bar -->
-  <div id="announcement-bar" class="text-xs px-4 sm:px-6 lg:px-12 border-b border-stone-300/80 hidden md:block bg-[#f3ecd8] text-stone-800 shadow-sm transition-all duration-500 overflow-hidden py-2.5 max-h-16 opacity-100">
+  <!-- Announcement Bar (Desktop) - Smooth collapsible top bar, hides immediately on scroll -->
+  <div id="announcement-bar" class="text-xs px-4 sm:px-6 lg:px-12 border-b border-stone-300/80 hidden md:block bg-[#f3ecd8] text-stone-800 shadow-sm transition-all duration-300 ease-in-out overflow-hidden py-2.5 max-h-16 opacity-100">
     <div class="max-w-[1560px] mx-auto flex justify-between items-center tracking-widest font-serif-jp text-[11px]">
       <div class="flex items-center space-x-6">
         <span class="flex items-center gap-1.5 text-stone-800 font-medium">
@@ -181,21 +181,10 @@ const { store } = siteConfig;
 
   function handleHeaderScroll() {
     const currentScrollY = window.scrollY;
-    const isAtTop = currentScrollY <= 50;
-    // Linger longer before hiding: requires scrolling past 140px and noticeable downward scroll
-    const isScrollingDown = currentScrollY > lastScrollY + 4 && currentScrollY > 140;
-    const isScrollingUp = currentScrollY < lastScrollY - 4;
+    // Exactly at the very top of page (for showing announcement bar)
+    const isAtTop = currentScrollY <= 8;
 
-    // 1. Hide header on scroll down, show on scroll up
-    if (isScrollingDown) {
-      // Smooth slide out upwards without changing background color
-      headerWrapper.style.transform = 'translateY(-100%)';
-    } else if (isScrollingUp || isAtTop) {
-      // Slide in downwards smoothly
-      headerWrapper.style.transform = 'translateY(0)';
-    }
-
-    // 2. Control announcement bar visibility (only at top of page)
+    // 1. Hide announcement bar immediately when scrolling away from top (> 8px)
     if (announcementBar) {
       if (isAtTop) {
         if (!isAnnouncementVisible) {
@@ -210,6 +199,19 @@ const { store } = siteConfig;
           isAnnouncementVisible = false;
         }
       }
+    }
+
+    // 2. Main menu header scroll down/up behavior:
+    // Lingers longer before hiding navigation menu (past 140px)
+    const isScrollingDown = currentScrollY > lastScrollY + 4 && currentScrollY > 140;
+    const isScrollingUp = currentScrollY < lastScrollY - 4;
+
+    if (isScrollingDown) {
+      // Smooth slide out upwards without changing background color
+      headerWrapper.style.transform = 'translateY(-100%)';
+    } else if (isScrollingUp || isAtTop) {
+      // Slide in downwards smoothly
+      headerWrapper.style.transform = 'translateY(0)';
     }
 
     // 3. Theme styling: Keep transparent on top/hero. When scrolling UP from below, apply solid theme
