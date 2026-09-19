@@ -18,11 +18,11 @@ const { store: storeText } = siteConfig.content;
     <!-- Store Layout: Unified Store Info & Calendar on Left, Map on Right -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
       
-      <!-- Left Column: Unified Boutique Card (Info + Calendar Harmonized) -->
-      <div class="lg:col-span-6 flex flex-col justify-between bg-cream-50 border border-stone-200/90 shadow-sm rounded-sm p-6 sm:p-8">
+      <!-- Left Column: Store Info & Calendar (Natural / Flat Design) -->
+      <div class="lg:col-span-6 flex flex-col justify-between space-y-6">
         
         <!-- Top: Store Identity -->
-        <div class="border-b border-stone-200 pb-5">
+        <div class="border-b border-stone-300/80 pb-4">
           <div class="flex justify-between items-baseline flex-wrap gap-2">
             <div>
               <span class="text-[10px] font-sans tracking-mega-wide uppercase text-gold-600 block mb-0.5">{store.nameEn}</span>
@@ -74,7 +74,7 @@ const { store: storeText } = siteConfig.content;
         </dl>
 
         <!-- Integrated Calendar Sub-section -->
-        <div class="pt-4 border-t border-stone-200">
+        <div class="pt-6 border-t border-stone-300/80">
           <div class="flex justify-between items-center mb-3">
             <div>
               <h4 class="text-xs font-sans tracking-widest uppercase text-stone-800 font-medium">{storeText.calendarTitle}</h4>
@@ -83,7 +83,7 @@ const { store: storeText } = siteConfig.content;
               <button
                 type="button"
                 id="cal-prev-btn"
-                class="p-1 rounded border border-stone-300 hover:bg-stone-100 text-stone-600 transition-colors"
+                class="p-1 rounded border border-stone-300 hover:bg-stone-200/50 text-stone-600 transition-colors"
                 aria-label="前月"
               >
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -92,7 +92,7 @@ const { store: storeText } = siteConfig.content;
               <button
                 type="button"
                 id="cal-next-btn"
-                class="p-1 rounded border border-stone-300 hover:bg-stone-100 text-stone-600 transition-colors"
+                class="p-1 rounded border border-stone-300 hover:bg-stone-200/50 text-stone-600 transition-colors"
                 aria-label="次月"
               >
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -101,7 +101,7 @@ const { store: storeText } = siteConfig.content;
           </div>
 
           <!-- Calendar Days Grid -->
-          <div class="calendar-wrapper bg-stone-50/60 p-2.5 rounded border border-stone-200/70">
+          <div class="calendar-wrapper bg-white/60 p-3 rounded border border-stone-200/80">
             <div class="grid grid-cols-7 gap-1 text-center font-sans text-[11px] text-stone-400 mb-1 font-medium">
               <span class="text-berry-700">日</span>
               <span>月</span>
