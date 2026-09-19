@@ -33,7 +33,7 @@ const { store } = siteConfig;
   </div>
 
   <!-- Main Navigation Bar -->
-  <header id="main-header" class="w-full transition-all duration-300 border-b border-white/10">
+  <header id="main-header" class="w-full transition-all duration-300 border-b-0">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
         <!-- Logo -->
@@ -122,7 +122,6 @@ const { store } = siteConfig;
 
 <script is:inline>
   const headerWrapper = document.getElementById('header-wrapper');
-  const mainHeader = document.getElementById('main-header');
   const announcementBar = document.getElementById('announcement-bar');
   const logoTitle = document.getElementById('logo-title');
   const logoSubtitle = document.getElementById('logo-subtitle');
@@ -137,9 +136,6 @@ const { store } = siteConfig;
       // Solid / Light background after scrolling past Hero top
       headerWrapper.classList.remove('text-cream-50', 'bg-transparent');
       headerWrapper.classList.add('text-noir-900', 'bg-cream-50/95', 'backdrop-blur-md', 'shadow-sm');
-
-      mainHeader.classList.remove('border-white/10');
-      mainHeader.classList.add('border-stone-200/60');
 
       if (announcementBar) {
         announcementBar.classList.remove('border-white/15', 'bg-noir-950/40');
@@ -164,9 +160,6 @@ const { store } = siteConfig;
       // Transparent background inside Hero section
       headerWrapper.classList.add('text-cream-50', 'bg-transparent');
       headerWrapper.classList.remove('text-noir-900', 'bg-cream-50/95', 'backdrop-blur-md', 'shadow-sm');
-
-      mainHeader.classList.add('border-white/10');
-      mainHeader.classList.remove('border-stone-200/60');
 
       if (announcementBar) {
         announcementBar.classList.add('border-white/15', 'bg-noir-950/40');
