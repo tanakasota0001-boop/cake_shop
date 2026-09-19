@@ -45,8 +45,8 @@ const { menu } = siteConfig.content;
           data-product-id={product.id}
           onclick={`openProductModal('${product.id}')`}
         >
-          <!-- Large Image Thumbnail -->
-          <div class="relative aspect-[4/3] sm:aspect-square overflow-hidden bg-stone-100 mb-3.5">
+          <!-- Portrait Image Thumbnail -->
+          <div class="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] overflow-hidden bg-stone-100 mb-3.5">
             <img
               src={product.image}
               alt={product.name}
