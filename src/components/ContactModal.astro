@@ -66,6 +66,7 @@ const { contact: contactText } = siteConfig.content;
             class="w-full px-3 py-2.5 bg-white border border-stone-300 rounded-sm focus:outline-none focus:border-gold-500 text-stone-900"
           >
             <option value="">選択してください</option>
+            <option value="ホールケーキ・オーダーメイドのご予約・ご相談">ホールケーキ・オーダーメイドのご予約・ご相談</option>
             <option value="焼き菓子・ギフトの地方発送について">焼き菓子・ギフトの地方発送について</option>
             <option value="商品・原材料・アレルギーについて">商品・原材料・アレルギーについて</option>
             <option value="カフェ・飲食店様向け卸販売のご相談">カフェ・飲食店様向け卸販売のご相談</option>
@@ -164,11 +165,15 @@ const { contact: contactText } = siteConfig.content;
   const contactModal = document.getElementById('contact-modal');
   const contactForm = document.getElementById('contact-form');
   const contactSuccess = document.getElementById('contact-success-msg');
+  const contactPurposeSelect = document.getElementById('contact-purpose');
 
-  window.openContactModal = function() {
+  window.openContactModal = function(defaultPurpose) {
     if (!contactModal) return;
     if (contactForm) contactForm.style.display = 'block';
     if (contactSuccess) contactSuccess.classList.add('hidden');
+    if (contactPurposeSelect && defaultPurpose) {
+      contactPurposeSelect.value = defaultPurpose;
+    }
     contactModal.classList.remove('hidden');
     contactModal.style.display = 'block';
     document.body.style.overflow = 'hidden';

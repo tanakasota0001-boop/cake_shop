@@ -66,37 +66,56 @@ export const siteConfig = {
     },
 
     specialite: {
-      featureMain: {
-        tag: "Signature Cake",
-        nameJa: "王道を極めた「ショートケーキ」",
-        nameEn: "Strawberry Shortcake",
-        desc: "ケーキ作りの原点にして真骨頂。極限までキメを整えて焼き上げた羽のように軽いスポンジに、乳脂肪分の異なる北海道産生クリームを独自ブレンド。みずみずしい旬の苺とともに、一口で幸せに包まれる王道の美味しさをお届けします。",
-        price: "¥680（税込） / 通年販売",
-        priceShort: "¥680",
-        image: "https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1200&q=85",
-        productId: "shortcake"
-      },
-      subCard1: {
-        badge: "Specialty",
-        categoryText: "和栗の奥深い香り",
-        nameJa: "濃厚和栗のモンブラン",
-        nameEn: "Chestnut Mont-Blanc",
-        desc: "栗本来の素朴で濃厚な風味を凝縮した特製マロンクリーム。無糖シャンティとサクサクのメレンゲが栗の甘美な余韻を引き立てます。",
-        price: "¥750",
-        image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=85",
-        productId: "mont-blanc"
-      },
-      subCard2: {
-        badge: "Gift & Treat",
-        categoryText: "繊細なサクふわ食感",
-        nameJa: "マカロン・コレクション",
-        nameEn: "Macaron Assortment",
-        desc: "アーモンド香る繊細なマカロン生地に、なめらかなガナッシュをサンド。色鮮やかで上品な味わいは手土産やギフトにも最適です。",
-        price: "¥1,600",
-        priceNote: "(5個入・税込)",
-        image: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=800&q=85",
-        productId: "macaron-box"
-      }
+      items: [
+        {
+          id: "piece-montee",
+          title: "PIÈCE MONTÉE",
+          subTitle: "ウェディング・アニバーサリー多段ケーキ",
+          desc: "特別な記念日やウェディングに華を添える、職人技を凝縮したエレガントな多段ケーキ。",
+          image: "https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1200&q=85",
+          aspect: "standard" // 4:5
+        },
+        {
+          id: "anniversary-shortcake",
+          title: "ENTREMETS CÉLÉBRATION",
+          subTitle: "誕生日・アニバーサリーホールケーキ",
+          desc: "軽やかな北海道産純生クリームと厳選された旬の果実を惜しみなくあしらった特製アニバーサリーケーキ。",
+          image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=85",
+          aspect: "standard" // 4:5
+        },
+        {
+          id: "noel-special",
+          title: "BÛCHE & NOËL CRÉATION",
+          subTitle: "クリスマス限定プレミアムケーキ",
+          desc: "聖夜の食卓を華やかに彩る、年に一度のフェスティブな特別創作ケーキ。ご予約限定。",
+          image: "https://images.unsplash.com/photo-1543508282-6319a3e2621f?auto=format&fit=crop&w=1600&q=85",
+          aspect: "wide" // 3:2 span 2 cols
+        },
+        {
+          id: "tarte-fruits",
+          title: "TARTE AUX FRUITS DE SAISON",
+          subTitle: "季節の極上フルーツタルト",
+          desc: "香ばしいサブレ生地に自家製クレームダマンド、厳選した最高品質の旬のフルーツを贅沢に敷き詰めて。",
+          image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=85",
+          aspect: "standard" // 4:5
+        },
+        {
+          id: "number-custom-cake",
+          title: "NUMBER & CUSTOM CAKE",
+          subTitle: "数字・メッセージ・特注ケーキ",
+          desc: "ご年齢や記念の数字、お好みのテーマカラーに合わせてひとつひとつフルオーダーでお仕立てします。",
+          image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1200&q=85",
+          aspect: "standard" // 4:5
+        },
+        {
+          id: "party-dessert-buffet",
+          title: "DESSERT COCKTAIL & BUFFET",
+          subTitle: "パーティー・イベント用デザートアソート",
+          desc: "大切なパーティーやおもてなしを彩る、華やかで一口サイズのプティフールや特製デザートスタンド。",
+          image: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=1600&q=85",
+          aspect: "wide" // 3:2 span 2 cols
+        }
+      ]
     },
 
     about: {
@@ -166,9 +185,13 @@ export const siteConfig = {
     },
 
     specialite: {
-      badge: "看板商品",
-      titleEn: "Specialty",
-      subtitleJa: "素材と技を極めた、自慢のスペシャリテ",
+      badge: "オーダーメイド",
+      titleEn: "Sur-Mesure",
+      subtitleJa: "特別な日を彩る、オーダーメイド・ホールケーキ",
+      heading: "特別な記念日やイベントのための\nオーダーメイド・クリエーション",
+      desc: "誕生日、クリスマス、記念日、ウェディングなど、大切な節目を彩る世界にひとつだけの特別なホールケーキ。お客様のご希望のテーマやお好みの果実、サイズに合わせてパティシエがひとつひとつ心を込めてお仕立てします。",
+      catalogBtn: "ご予約・ご相談はこちら",
+      menuLink: "商品一覧を見る"
     },
 
     menu: {
