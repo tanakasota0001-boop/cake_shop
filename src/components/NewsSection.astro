@@ -55,9 +55,9 @@ const loopedGallery = [...gallery, ...gallery];
     <!-- Header info in center container -->
     <div class="max-w-[1560px] mx-auto px-6 sm:px-8 lg:px-12 mb-8 flex flex-col sm:flex-row justify-between items-center border-b border-stone-200 pb-4">
       <div class="text-center sm:text-left">
-        <span class="text-[10px] font-sans tracking-mega-wide uppercase text-gold-600 block">Social Media</span>
-        <h3 class="text-xl sm:text-2xl font-serif-jp text-stone-900">{newsText.instagramTitle}</h3>
-        <p class="text-xs text-stone-500 font-sans tracking-wider mt-0.5">{store.instagramAccountName}</p>
+        <span class="text-[10px] font-sans tracking-mega-wide uppercase text-gold-600 block">{newsText.instagramBadge}</span>
+        <h3 class="text-xl sm:text-2xl font-serif-title tracking-wider font-light uppercase text-stone-900">{newsText.instagramTitleEn}</h3>
+        <p class="text-xs font-serif-jp text-stone-500 tracking-wider mt-0.5">{newsText.instagramSubtitleJa} <span class="font-sans text-stone-400 ml-1">({store.instagramAccountName})</span></p>
       </div>
       <a
         href={store.instagramUrl}

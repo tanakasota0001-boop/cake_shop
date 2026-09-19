@@ -134,12 +134,13 @@ export const siteConfig = {
 
   // ==========================================
   // 3. 各セクションの文章・見出し (Content Texts)
+  // 英語タイトル (titleEn) ＋ 日本語サブタイトル (subtitleJa) で統一
   // ==========================================
   content: {
     concept: {
       badge: "Philosophy & Craft",
       titleEn: "Our Concept",
-      titleJa: "素材と技が織りなす、洗練の洋菓子。",
+      subtitleJa: "素材と技が織りなす、洗練の洋菓子。",
       lead: "一口で心満たされる、記憶に残るスイーツを。",
       paragraphs: [
         "洋菓子の伝統的な美意識と製法を大切にしながら、四季折々の厳選素材と軽やかな口どけを追求しています。",
@@ -166,14 +167,14 @@ export const siteConfig = {
 
     specialite: {
       badge: "Signature Sweets",
-      titleEn: "Signature Sweets",
-      subtitleJa: "素材と技を極めた、自慢のスペシャリテ"
+      titleEn: "Specialty",
+      subtitleJa: "素材と技を極めた、自慢のスペシャリテ",
     },
 
     menu: {
       badge: "Our Menu",
       titleEn: "Menu & Collection",
-      subtitleJa: "定番のケーキから手土産に最適な焼き菓子まで、多彩なラインナップを取り揃えております。",
+      subtitleJa: "定番のケーキから手土産に最適な焼き菓子まで",
       noticeBoxTitle: "【地方発送・ギフト詰め合わせ・法人様のご注文について】",
       noticeBoxText: "焼き菓子やマカロンはご予算に応じたオリジナルギフトボックスの詰め合わせや地方配送も承っております。イベント用のお菓子やカフェ・飲食店様への卸販売についてもお気軽にお問い合わせください。",
       ctaButton: "お問い合わせはこちら"
@@ -181,7 +182,8 @@ export const siteConfig = {
 
     about: {
       badge: "Craftsmanship",
-      titleJa: "毎日、心をこめて。\n美味しさの先にある感動を。",
+      titleEn: "About Chef & Atelier",
+      subtitleJa: "毎日、心をこめて。美味しさの先にある感動を。",
       paragraphs: [
         "幼い頃に魅了された洋菓子の美しさと、オーブンから漂う香ばしいバターの香り。確かな技術を土台にしながら、私たちが何よりも大切にしているのは「作り手自身が心から納得できるお菓子づくり」です。",
         "素材の選定から温度管理、生地を合わせる手の感覚まで、一切の妥協を排し、毎日工房で真摯にお菓子と向き合っています。",
@@ -196,7 +198,9 @@ export const siteConfig = {
       badge: "News & Topics",
       titleEn: "News & Topics",
       subtitleJa: "最新のお知らせ・季節のご案内",
-      instagramTitle: "Instagram",
+      instagramBadge: "Social Media",
+      instagramTitleEn: "Instagram Gallery",
+      instagramSubtitleJa: "公式インスタグラムの最新投稿",
       instagramCta: "Instagramを見る"
     },
 
@@ -211,7 +215,8 @@ export const siteConfig = {
 
     contact: {
       badge: "Contact Us",
-      titleJa: "お問い合わせ",
+      titleEn: "Contact Us",
+      subtitleJa: "お問い合わせ・ご相談",
       desc: "商品やギフトの地方発送、法人様向けご注文など、お気軽にお問い合わせください。",
       phoneNoticeTitle: "【お急ぎ・当日在庫の確認はお電話にて】"
     }
