@@ -28,7 +28,6 @@ const { store: storeText } = siteConfig.content;
               <span class="text-[10px] font-sans tracking-mega-wide uppercase text-gold-600 block mb-0.5">{store.nameEn}</span>
               <h3 class="text-2xl font-serif-jp text-stone-900 font-medium">{store.nameJa}</h3>
             </div>
-            <p class="text-[11px] text-stone-400 font-sans tracking-wider">{store.subtitle}</p>
           </div>
         </div>
 
@@ -69,8 +68,7 @@ const { store: storeText } = siteConfig.content;
         <!-- Integrated Calendar Sub-section -->
         <div class="pt-4 border-t border-stone-200">
           <div class="flex justify-between items-center mb-3">
-            <div class="flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-gold-500"></span>
+            <div>
               <h4 class="text-xs font-sans tracking-widest uppercase text-stone-800 font-medium">{storeText.calendarTitle}</h4>
             </div>
             <div class="flex items-center space-x-1.5">
@@ -108,7 +106,7 @@ const { store: storeText } = siteConfig.content;
             <div id="calendar-days-container" class="grid grid-cols-7 gap-1 text-center font-sans text-xs"></div>
           </div>
 
-          <!-- Calendar Legend & Contact CTA -->
+          <!-- Calendar Legend -->
           <div class="mt-3 flex flex-wrap items-center justify-between text-[11px] text-stone-500 gap-2 font-serif-jp pt-1">
             <div class="flex items-center gap-3">
               <div class="flex items-center gap-1">
@@ -120,13 +118,6 @@ const { store: storeText } = siteConfig.content;
                 <span>{storeText.legendToday}</span>
               </div>
             </div>
-            <button
-              type="button"
-              onclick="openContactModal()"
-              class="text-xs tracking-widest text-noir-900 hover:text-gold-600 font-sans uppercase underline underline-offset-4 transition-colors font-medium ml-auto"
-            >
-              お問い合わせはこちら →
-            </button>
           </div>
         </div>
 
