@@ -196,7 +196,7 @@ export const siteConfig = {
 
     menu: {
       badge: "商品一覧",
-      titleEn: "Menu & Collection",
+      titleEn: "Collection",
       subtitleJa: "定番のケーキから手土産に最適な焼き菓子まで",
       noticeBoxTitle: "【地方発送・ギフト詰め合わせ・法人様のご注文について】",
       noticeBoxText: "焼き菓子やマカロンはご予算に応じたオリジナルギフトボックスの詰め合わせや地方配送も承っております。イベント用のお菓子やカフェ・飲食店様への卸販売についてもお気軽にお問い合わせください。",
