@@ -5,7 +5,7 @@ const { store: storeText } = siteConfig.content;
 ---
 
 <section id="store" class="py-24 sm:py-32 bg-cream-100 text-noir-900 relative">
-  <div class="max-w-[1560px] mx-auto px-6 sm:px-8 lg:px-12 scroll-fade-in">
+  <div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 scroll-fade-in">
     <!-- Header -->
     <div class="text-center max-w-3xl mx-auto space-y-3 mb-16 sm:mb-20">
       <span class="text-xs font-sans tracking-mega-wide uppercase text-gold-600 block">{storeText.badge}</span>
@@ -15,11 +15,14 @@ const { store: storeText } = siteConfig.content;
       <div class="w-12 h-[1px] bg-gold-400 mx-auto"></div>
     </div>
 
-    <!-- Store Info & Calendar Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16">
-      <!-- Info Left -->
-      <div class="lg:col-span-6 space-y-8">
-        <div class="bg-cream-50 p-8 sm:p-10 border border-stone-200 shadow-sm space-y-6">
+    <!-- Store Layout: Info & Calendar on Left (stacked), Map on Right -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+      
+      <!-- Left Column: Store Info + Calendar Stacked -->
+      <div class="lg:col-span-6 flex flex-col gap-8">
+        
+        <!-- Store Info Card -->
+        <div class="bg-cream-50 p-6 sm:p-8 border border-stone-200 shadow-sm space-y-6 rounded-sm">
           <div>
             <span class="text-[10px] font-sans tracking-mega-wide uppercase text-gold-600 block mb-1">{store.nameEn}</span>
             <h3 class="text-2xl font-serif-jp text-stone-900 font-medium">{store.nameJa}</h3>
@@ -27,14 +30,14 @@ const { store: storeText } = siteConfig.content;
           </div>
 
           <dl class="divide-y divide-stone-200/80 text-xs sm:text-sm font-serif-jp">
-            <div class="py-3.5 grid grid-cols-3 gap-4">
+            <div class="py-3 grid grid-cols-3 gap-4">
               <dt class="text-stone-500 font-sans tracking-wider uppercase">住所</dt>
               <dd class="col-span-2 text-stone-900 font-light">
                 〒{store.postalCode}<br />
                 {store.address}
               </dd>
             </div>
-            <div class="py-3.5 grid grid-cols-3 gap-4 items-center">
+            <div class="py-3 grid grid-cols-3 gap-4 items-center">
               <dt class="text-stone-500 font-sans tracking-wider uppercase">電話番号</dt>
               <dd class="col-span-2 text-stone-900 font-sans font-medium">
                 <a href={`tel:${store.tel.replace(/-/g, '')}`} class="hover:text-gold-600 transition-colors inline-flex items-center gap-2">
@@ -43,21 +46,21 @@ const { store: storeText } = siteConfig.content;
                 </a>
               </dd>
             </div>
-            <div class="py-3.5 grid grid-cols-3 gap-4">
+            <div class="py-3 grid grid-cols-3 gap-4">
               <dt class="text-stone-500 font-sans tracking-wider uppercase">営業時間</dt>
               <dd class="col-span-2 text-stone-900 font-light">
                 {store.businessHours}<br />
                 <span class="text-[11px] text-stone-500">{store.businessHoursNote}</span>
               </dd>
             </div>
-            <div class="py-3.5 grid grid-cols-3 gap-4">
+            <div class="py-3 grid grid-cols-3 gap-4">
               <dt class="text-stone-500 font-sans tracking-wider uppercase">定休日</dt>
               <dd class="col-span-2 text-stone-900 font-light">
                 {store.holidays}<br />
                 <span class="text-[11px] text-stone-500">{store.holidaysNote}</span>
               </dd>
             </div>
-            <div class="py-3.5 grid grid-cols-3 gap-4">
+            <div class="py-3 grid grid-cols-3 gap-4">
               <dt class="text-stone-500 font-sans tracking-wider uppercase">アクセス</dt>
               <dd class="col-span-2 text-stone-900 font-light space-y-1">
                 {store.accessList.map(item => (
@@ -67,21 +70,19 @@ const { store: storeText } = siteConfig.content;
             </div>
           </dl>
 
-          <div class="pt-2 flex flex-wrap gap-4">
+          <div class="pt-2">
             <button
               type="button"
               onclick="openContactModal()"
-              class="inline-flex items-center gap-2 px-5 py-2.5 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors"
+              class="inline-flex items-center gap-2 px-6 py-2.5 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors rounded-sm"
             >
               お問い合わせ
             </button>
           </div>
         </div>
-      </div>
 
-      <!-- Business Calendar Right -->
-      <div class="lg:col-span-6 space-y-4">
-        <div class="bg-cream-50 p-6 sm:p-8 border border-stone-200 shadow-sm">
+        <!-- Business Calendar Card -->
+        <div class="bg-cream-50 p-6 sm:p-8 border border-stone-200 shadow-sm rounded-sm">
           <div class="flex justify-between items-center mb-6">
             <div>
               <span class="text-[10px] font-sans tracking-mega-wide uppercase text-gold-600 block">Calendar</span>
@@ -134,21 +135,25 @@ const { store: storeText } = siteConfig.content;
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Map Frame -->
-    <div class="relative w-full h-[360px] sm:h-[440px] bg-stone-200 border border-stone-300 overflow-hidden shadow-lg rounded-sm">
-      <iframe
-        src={store.googleMapsEmbedUrl}
-        width="100%"
-        height="100%"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="店舗所在地マップ"
-      ></iframe>
+      </div>
+
+      <!-- Right Column: Map Frame (Full Height on Desktop) -->
+      <div class="lg:col-span-6 h-full min-h-[420px] sm:min-h-[500px] lg:min-h-full">
+        <div class="w-full h-full min-h-[420px] sm:min-h-[500px] lg:min-h-full bg-stone-200 border border-stone-300 overflow-hidden shadow-sm rounded-sm">
+          <iframe
+            src={store.googleMapsEmbedUrl}
+            width="100%"
+            height="100%"
+            style="border:0; min-height: 100%; height: 100%;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="店舗所在地マップ"
+          ></iframe>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
