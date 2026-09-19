@@ -1,6 +1,13 @@
 /**
  * サイト全体の共通設定・テキスト・画像集約ファイル
- * 英語（English）と日本語（Japanese）で統一しています。
+ * 
+ * 💡 このファイルを編集するだけで、店舗情報、全セクションの文言、画像URL、
+ * ナビゲーション、お問い合わせフォームの選択肢などを誰でも簡単に差し替えられます。
+ * 
+ * 画像について:
+ * - UnsplashなどのWeb画像URL（"https://..."）
+ * - または public/images/ フォルダに保存した画像（例: "/images/hero/sample.jpg"）
+ * どちらでも指定可能です。
  */
 
 export const siteConfig = {
@@ -36,10 +43,26 @@ export const siteConfig = {
   },
 
   // ==========================================
-  // 2. 画像設定 (Images Management)
-  // ローカル画像を使用する場合は "/images/..." のパスを指定してください。
+  // 2. ナビゲーションメニュー (Navigation)
+  // ==========================================
+  navigation: {
+    links: [
+      { id: "concept", labelEn: "Concept", labelJa: "こだわり", href: "#concept" },
+      { id: "collection", labelEn: "Menu", labelJa: "商品一覧", href: "#collection" },
+      { id: "specialty", labelEn: "Order Made", labelJa: "オーダーメイド", href: "#specialty" },
+      { id: "about", labelEn: "About", labelJa: "職人の想い", href: "#about" },
+      { id: "store", labelEn: "Store", labelJa: "店舗情報", href: "#store" },
+      { id: "news", labelEn: "News", labelJa: "お知らせ", href: "#news" }
+    ],
+    contactBtnText: "お問い合わせ",
+    mobileContactBtnText: "お問い合わせ・ご予約"
+  },
+
+  // ==========================================
+  // 3. 画像設定 (Images Management)
   // ==========================================
   images: {
+    // トップの大きなカルーセル画像
     heroSlides: [
       {
         url: "https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1920&q=85",
@@ -61,11 +84,13 @@ export const siteConfig = {
       }
     ],
 
+    // コンセプトセクション画像（メイン・サブ）
     concept: {
       main: "https://images.unsplash.com/photo-1556911073-38141963c9e0?auto=format&fit=crop&w=1200&q=85",
       sub: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=85"
     },
 
+    // オーダーメイド（Sur-Mesure）ギャラリー画像
     specialite: {
       items: [
         {
@@ -119,11 +144,13 @@ export const siteConfig = {
       ]
     },
 
+    // シェフ・工房紹介セクション画像
     about: {
       image: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1200&q=85",
       roleText: "Pastry Chef & Baker"
     },
 
+    // Instagramギャラリー写真
     gallery: [
       {
         url: "https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=600&q=80",
@@ -153,10 +180,10 @@ export const siteConfig = {
   },
 
   // ==========================================
-  // 3. 各セクションの文章・見出し (Content Texts)
-  // 英語タイトル上部 (badge) を日本語にし、英語タイトル (titleEn) と組み合わせ
+  // 4. 各セクションの文章・見出し (Content Texts)
   // ==========================================
   content: {
+    // --- コンセプトセクション (Concept) ---
     concept: {
       badge: "こだわり",
       titleEn: "Concept",
@@ -166,6 +193,7 @@ export const siteConfig = {
         "洋菓子の伝統的な美意識と製法を大切にしながら、四季折々の厳選素材と軽やかな口どけを追求しています。",
         "毎朝のアトリエで丁寧に泡立てる純生クリーム、芳醇に薫る発酵バター、そして契約農家から届くみずみずしい旬の果実。納得のいくお菓子だけを店頭に並べ、日々の暮らしに心ほどける甘い余韻をお届けします。"
       ],
+      promisesTitle: "Our 3 Promises",
       promises: [
         {
           num: "01. 厳選素材",
@@ -185,25 +213,33 @@ export const siteConfig = {
       ]
     },
 
+    // --- オーダーメイドセクション (Order Made) ---
     specialite: {
       badge: "オーダーメイド",
-      titleEn: "Sur-Mesure",
+      titleEn: "Order Made",
       subtitleJa: "特別な日を彩る、オーダーメイド・ホールケーキ",
-      heading: "特別な記念日やイベントのための\nオーダーメイド・クリエーション",
+      heading: "特別な日の\nオーダーメイド",
       desc: "誕生日、クリスマス、記念日、ウェディングなど、大切な節目を彩る世界にひとつだけの特別なホールケーキ。お客様のご希望のテーマやお好みの果実、サイズに合わせてパティシエがひとつひとつ心を込めてお仕立てします。",
+      tags: ["# 誕生日", "# クリスマス", "# アニバーサリー", "# ウェディング"],
       catalogBtn: "ご予約・ご相談はこちら",
+      hoverBadge: "ご相談・ご予約",
       menuLink: "商品一覧を見る"
     },
 
+    // --- 商品一覧セクション (Collection) ---
     menu: {
       badge: "商品一覧",
       titleEn: "Collection",
       subtitleJa: "定番のケーキから手土産に最適な焼き菓子まで",
+      hoverBadge: "詳しく見る",
+      taxLabel: "（税込）",
+      closeButtonText: "閉じる",
       noticeBoxTitle: "【地方発送・ギフト詰め合わせ・法人様のご注文について】",
       noticeBoxText: "焼き菓子やマカロンはご予算に応じたオリジナルギフトボックスの詰め合わせや地方配送も承っております。イベント用のお菓子やカフェ・飲食店様への卸販売についてもお気軽にお問い合わせください。",
       ctaButton: "お問い合わせはこちら"
     },
 
+    // --- シェフ・工房セクション (About) ---
     about: {
       badge: "職人の想い",
       titleEn: "About",
@@ -219,6 +255,7 @@ export const siteConfig = {
       chefNameEn: "Sota Tanaka"
     },
 
+    // --- お知らせ＆Instagramセクション (News) ---
     news: {
       badge: "お知らせ",
       titleEn: "News",
@@ -226,24 +263,74 @@ export const siteConfig = {
       instagramBadge: "インスタグラム",
       instagramTitleEn: "Instagram",
       instagramSubtitleJa: "公式インスタグラムの最新投稿",
-      instagramCta: "Instagramを見る"
+      instagramCta: "最新情報を見る",
+      instagramHoverBadge: "Instagramを開く"
     },
 
+    // --- 店舗情報＆営業カレンダー (Store) ---
     store: {
       badge: "店舗情報",
       titleEn: "Store",
       subtitleJa: "店舗情報・営業案内・交通アクセス",
       calendarTitle: "営業カレンダー",
       legendHoliday: "定休日",
-      legendToday: "本日"
+      legendToday: "本日",
+      tableLabels: {
+        address: "住所",
+        tel: "電話番号",
+        hours: "営業時間",
+        access: "アクセス",
+        parking: "駐車場"
+      },
+      calendar: {
+        weekdays: ["日", "月", "火", "水", "木", "金", "土"],
+        prevMonthAria: "前月",
+        nextMonthAria: "次月"
+      }
     },
 
+    // --- フッター (Footer) ---
+    footer: {
+      navTitle: "Navigation",
+      storeTitle: "Store Information",
+      backToTop: "Back to Top"
+    },
+
+    // --- お問い合わせモーダル (Contact Modal) ---
     contact: {
       badge: "お問い合わせ",
       titleEn: "Contact",
       subtitleJa: "商品やギフトのご相談・ご注文など",
       desc: "商品やギフトの地方発送、法人様向けご注文など、お気軽にお問い合わせください。",
-      phoneNoticeTitle: "【お急ぎ・当日在庫の確認はお電話にて】"
+      phoneNoticeTitle: "【お急ぎ・当日在庫の確認はお電話にて】",
+      purposes: [
+        "ホールケーキ・オーダーメイドのご予約・ご相談",
+        "焼き菓子・ギフトの地方発送について",
+        "商品・原材料・アレルギーについて",
+        "カフェ・飲食店様向け卸販売のご相談",
+        "取材・メディア・タイアップ関連",
+        "採用について",
+        "その他のお問い合わせ"
+      ],
+      form: {
+        purposeLabel: "お問い合わせ種別",
+        purposePlaceholder: "選択してください",
+        nameLabel: "お名前",
+        namePlaceholder: "例：山田 太郎",
+        phoneLabel: "お電話番号",
+        phonePlaceholder: "例：090-1234-5678",
+        emailLabel: "メールアドレス",
+        emailPlaceholder: "example@example.com",
+        messageLabel: "お問い合わせ内容",
+        messagePlaceholder: "ご希望の商品や数量、ご予算、お届け先のご指定、その他ご質問などをご記入ください。",
+        submitBtnText: "送信する",
+        cancelBtnText: "キャンセルして閉じる"
+      },
+      success: {
+        title: "お問い合わせを受け付けました",
+        message: "内容を確認の上、担当者より1〜2営業日以内にご連絡差し上げます。今しばらくお待ちくださいませ。",
+        closeBtnText: "閉じる"
+      }
     }
   }
 };

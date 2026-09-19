@@ -4,7 +4,7 @@ import { siteConfig } from '../data/siteConfig';
 const { menu } = siteConfig.content;
 ---
 
-<section id="collection" class="py-24 sm:py-32 bg-cream-50 text-noir-900 relative">
+<section id="collection" class="py-24 sm:py-32 bg-cream-100/50 text-noir-900 relative border-t border-stone-200/60">
   <div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-10 scroll-fade-in">
     <!-- Header -->
     <div class="text-center max-w-3xl mx-auto space-y-3 mb-16 sm:mb-20">
@@ -19,19 +19,17 @@ const { menu } = siteConfig.content;
     </div>
 
     <!-- Category Filter Tabs -->
-    <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 mb-16" id="category-filter-tabs">
+    <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-3 lg:gap-4 mb-12 sm:mb-16 max-w-4xl mx-auto" id="category-filter-tabs">
       {categories.map((cat, idx) => (
         <button
           type="button"
-          class={`cat-tab px-6 py-2.5 text-xs font-sans tracking-widest uppercase transition-all duration-300 border ${
-            idx === 0
-              ? 'bg-noir-900 text-cream-50 border-noir-900 shadow-sm'
-              : 'bg-transparent text-stone-600 border-stone-300 hover:border-stone-800'
+          class={`cat-tab px-3.5 sm:px-5 lg:px-6 py-2 sm:py-2.5 text-[11px] sm:text-xs font-sans tracking-wider sm:tracking-widest uppercase transition-all duration-300 border rounded-sm flex items-center justify-center ${
+            idx === 0 ? 'cat-tab-active' : ''
           }`}
           data-category={cat.id}
         >
-          <span class="font-medium">{cat.label}</span>
-          <span class="text-[10px] opacity-70 ml-1">({cat.subLabel})</span>
+          <span class="font-medium whitespace-nowrap">{cat.label}</span>
+          <span class="cat-sublabel text-[10px] ml-1 whitespace-nowrap opacity-80">({cat.subLabel})</span>
         </button>
       ))}
     </div>
@@ -56,7 +54,7 @@ const { menu } = siteConfig.content;
             <!-- Chic Monochrome Hover Overlay (matching Instagram badge style) -->
             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
               <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white shadow-lg transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                <span class="text-xs font-serif-jp tracking-wider text-white/95 font-medium">詳しく見る</span>
+                <span class="text-xs font-serif-jp tracking-wider text-white/95 font-medium">{menu.hoverBadge}</span>
                 <svg class="w-3.5 h-3.5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </div>
             </div>
@@ -97,17 +95,17 @@ const { menu } = siteConfig.content;
     type="button"
     onclick="closeProductModal()"
     class="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-2 px-4 py-2 bg-cream-50/95 hover:bg-noir-900 hover:text-cream-50 text-stone-900 text-xs font-sans tracking-widest uppercase rounded-full shadow-2xl transition-all duration-200 border border-stone-300 group"
-    aria-label="閉じる"
+    aria-label={menu.closeButtonText}
   >
     <svg class="w-4 h-4 group-hover:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-    <span class="font-medium">閉じる</span>
+    <span class="font-medium">{menu.closeButtonText}</span>
   </button>
 
   <!-- Modal Container -->
   <div class="min-h-full flex items-center justify-center p-4 sm:p-6 text-center">
     <div
       id="product-modal-card"
-      class="relative bg-cream-100 max-w-3xl w-full text-left rounded-sm shadow-2xl border border-stone-300 overflow-hidden flex flex-col md:flex-row my-8 z-10"
+      class="relative bg-cream-50 max-w-3xl w-full text-left rounded-sm shadow-2xl border border-stone-300 overflow-hidden flex flex-col md:flex-row my-8 z-10"
       onclick="event.stopPropagation()"
     >
       <!-- Modal Image -->
@@ -130,7 +128,7 @@ const { menu } = siteConfig.content;
 
           <div class="text-lg font-sans font-medium text-stone-900 border-b border-stone-200 pb-3">
             <span id="modal-price"></span>
-            <span class="text-xs text-stone-400 font-normal ml-1">（税込）</span>
+            <span class="text-xs text-stone-400 font-normal ml-1">{menu.taxLabel}</span>
           </div>
 
           <div>
@@ -142,9 +140,9 @@ const { menu } = siteConfig.content;
           <button
             type="button"
             onclick="closeProductModal()"
-            class="w-full py-2.5 bg-noir-900 text-cream-50 hover:bg-stone-800 text-xs font-sans tracking-widest uppercase transition-colors rounded-sm text-center"
+            class="w-full py-2.5 bg-noir-900 text-cream-50 hover:bg-gold-600 text-xs font-sans tracking-widest uppercase transition-colors rounded-sm text-center font-medium shadow-sm"
           >
-            閉じる
+            {menu.closeButtonText}
           </button>
         </div>
       </div>
@@ -161,14 +159,14 @@ const { menu } = siteConfig.content;
   const tabs = document.querySelectorAll('.cat-tab');
   const items = document.querySelectorAll('.product-item');
 
+  function setTabActive(activeTab) {
+    tabs.forEach(tab => tab.classList.remove('cat-tab-active'));
+    activeTab.classList.add('cat-tab-active');
+  }
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => {
-        t.classList.remove('bg-noir-900', 'text-cream-50', 'border-noir-900', 'shadow-sm');
-        t.classList.add('bg-transparent', 'text-stone-600', 'border-stone-300');
-      });
-      tab.classList.add('bg-noir-900', 'text-cream-50', 'border-noir-900', 'shadow-sm');
-      tab.classList.remove('bg-transparent', 'text-stone-600', 'border-stone-300');
+      setTabActive(tab);
 
       const selectedCategory = tab.getAttribute('data-category');
 
@@ -214,3 +212,36 @@ const { menu } = siteConfig.content;
     document.body.style.overflow = '';
   };
 </script>
+
+<style>
+  /* Inactive tab state */
+  .cat-tab {
+    background-color: transparent;
+    color: #57534e; /* text-stone-600 */
+    border-color: #d6d3d1; /* border-stone-300 */
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cat-tab:not(.cat-tab-active):hover {
+      border-color: #a37b19; /* border-gold-600 */
+      color: #a37b19; /* text-gold-600 */
+    }
+  }
+
+  /* Active tab state - guaranteed identical noir background and cream text across all selections */
+  .cat-tab.cat-tab-active,
+  .cat-tab.cat-tab-active:hover,
+  .cat-tab.cat-tab-active:focus,
+  .cat-tab.cat-tab-active:active {
+    background-color: #181716 !important; /* bg-noir-900 */
+    color: #fdfcf9 !important; /* text-cream-50 */
+    border-color: #181716 !important; /* border-noir-900 */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .cat-tab.cat-tab-active span,
+  .cat-tab.cat-tab-active:hover span,
+  .cat-tab.cat-tab-active:focus span {
+    color: #fdfcf9 !important;
+  }
+</style>

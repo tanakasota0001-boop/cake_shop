@@ -1,43 +1,41 @@
 ---
 import { siteConfig } from '../data/siteConfig';
-const { store } = siteConfig;
+const { store, navigation } = siteConfig;
+const { footer } = siteConfig.content;
 ---
 
-<footer class="bg-[#f3ecd8] text-stone-700 pt-20 pb-12 border-t border-stone-300/80 relative">
+<footer class="bg-[#f1e6cd] text-stone-800 pt-20 pb-12 border-t border-stone-300/70 relative">
   <div class="max-w-[1560px] mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-stone-300/80">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-stone-300/70">
       <!-- Brand Left -->
       <div class="md:col-span-5 space-y-4">
         <a href="#" class="inline-block group">
           <span class="font-serif-title tracking-mega-wide text-2xl font-light text-stone-900 group-hover:text-gold-600 transition-colors uppercase block">
             {store.nameEn}
           </span>
-          <span class="text-[10px] tracking-ultra-wide text-stone-500 font-sans uppercase block">
+          <span class="text-[11px] tracking-ultra-wide text-stone-500 font-sans uppercase block">
             {store.subtitle}
           </span>
         </a>
-        <p class="text-xs font-serif-jp text-stone-600 leading-relaxed max-w-sm">
+        <p class="text-[13px] font-serif-jp text-stone-600 leading-relaxed max-w-sm">
           {store.shortConcept}
         </p>
       </div>
 
       <!-- Quick Nav -->
       <div class="md:col-span-3 space-y-3">
-        <h4 class="text-xs font-sans tracking-ultra-wide uppercase text-gold-600 font-medium">Navigation</h4>
-        <ul class="space-y-2 text-xs font-sans tracking-widest text-stone-600">
-          <li><a href="#concept" class="hover:text-stone-900 transition-colors">Concept</a></li>
-          <li><a href="#collection" class="hover:text-stone-900 transition-colors">Menu</a></li>
-          <li><a href="#specialty" class="hover:text-stone-900 transition-colors">Sur-Mesure</a></li>
-          <li><a href="#about" class="hover:text-stone-900 transition-colors">About</a></li>
-          <li><a href="#store" class="hover:text-stone-900 transition-colors">Store</a></li>
-          <li><a href="#news" class="hover:text-stone-900 transition-colors">News</a></li>
+        <h4 class="text-xs font-sans tracking-ultra-wide uppercase text-gold-600 font-medium">{footer.navTitle}</h4>
+        <ul class="space-y-2 text-[13px] font-sans tracking-widest text-stone-600">
+          {navigation.links.map(link => (
+            <li><a href={link.href} class="hover:text-gold-600 transition-colors">{link.labelEn}</a></li>
+          ))}
         </ul>
       </div>
 
       <!-- Info & Contact -->
       <div class="md:col-span-4 space-y-3">
-        <h4 class="text-xs font-sans tracking-ultra-wide uppercase text-gold-600 font-medium">Store Information</h4>
-        <address class="not-italic text-xs font-serif-jp text-stone-600 space-y-2 leading-relaxed">
+        <h4 class="text-xs font-sans tracking-ultra-wide uppercase text-gold-600 font-medium">{footer.storeTitle}</h4>
+        <address class="not-italic text-[13px] font-serif-jp text-stone-600 space-y-2 leading-relaxed">
           <p>〒{store.postalCode} {store.address}</p>
           <p>
             <a href={`tel:${store.tel.replace(/-/g, '')}`} class="hover:text-gold-600 transition-colors">Tel. {store.tel}</a>
@@ -52,7 +50,7 @@ const { store } = siteConfig;
             href={store.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-xs text-stone-700 hover:text-gold-600 transition-colors"
+            class="inline-flex items-center gap-2 text-[13px] text-stone-700 hover:text-gold-600 transition-colors"
           >
             <svg class="w-4 h-4 fill-current text-gold-600" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             <span>Instagram {store.instagramAccountName}</span>
@@ -62,10 +60,10 @@ const { store } = siteConfig;
     </div>
 
     <!-- Bottom Bar -->
-    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-[11px] font-sans tracking-widest text-stone-500">
+    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs font-sans tracking-widest text-stone-500">
       <p>© {store.copyrightYear} {store.nameEn}. All Rights Reserved.</p>
       <a href="#" class="mt-4 sm:mt-0 hover:text-gold-600 transition-colors flex items-center gap-1">
-        <span>Back to Top</span>
+        <span>{footer.backToTop}</span>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
       </a>
     </div>

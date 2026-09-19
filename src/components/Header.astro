@@ -1,13 +1,13 @@
 ---
 import { siteConfig } from '../data/siteConfig';
-const { store } = siteConfig;
+const { store, navigation } = siteConfig;
 ---
 
 <!-- Header Wrapper: Fixed overlay with smooth translation for show/hide behavior -->
 <div id="header-wrapper" class="fixed top-0 left-0 right-0 z-50 text-cream-50 bg-transparent">
   <!-- Announcement Bar (Desktop) - Directly scrolls away with page scroll -->
-  <div id="announcement-bar" class="text-xs px-4 sm:px-6 lg:px-12 border-b border-stone-300/80 hidden md:block bg-[#f3ecd8] text-stone-800 shadow-sm overflow-hidden py-2.5 will-change-transform">
-    <div class="max-w-[1560px] mx-auto flex justify-between items-center tracking-widest font-serif-jp text-[11px]">
+  <div id="announcement-bar" class="text-xs px-4 sm:px-6 lg:px-12 border-b border-stone-300/70 hidden md:block bg-[#f1e6cd] text-stone-800 shadow-sm overflow-hidden py-2.5 will-change-transform">
+    <div class="max-w-[1560px] mx-auto flex justify-between items-center tracking-widest font-serif-jp text-xs">
       <div class="flex items-center space-x-6">
         <span class="flex items-center gap-1.5 text-stone-800 font-medium">
           <svg class="w-3.5 h-3.5 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -36,47 +36,12 @@ const { store } = siteConfig;
   <header id="main-header" class="w-full transition-all duration-300 border-b-0">
     <div class="max-w-[1560px] mx-auto px-6 sm:px-8 lg:px-12">
       <div class="flex justify-between items-center h-20">
-        <!-- Logo -->
-        <a href="#" class="group flex flex-col items-start focus:outline-none">
-          <span id="logo-title" class="font-serif-title tracking-mega-wide text-xl sm:text-2xl font-light transition-colors uppercase drop-shadow-sm">
-            {store.nameEn}
-          </span>
-          <span id="logo-subtitle" class="text-[10px] tracking-ultra-wide transition-colors font-sans uppercase opacity-80">
-            {store.subtitle}
-          </span>
-        </a>
-
-        <!-- Desktop Nav -->
-        <nav id="desktop-nav" class="hidden lg:flex items-center space-x-8 text-xs font-sans tracking-widest transition-colors">
-          <a href="#concept" class="hover:text-gold-400 transition-colors uppercase py-1 border-b border-transparent hover:border-gold-400">Concept</a>
-          <a href="#collection" class="hover:text-gold-400 transition-colors uppercase py-1 border-b border-transparent hover:border-gold-400">Menu</a>
-          <a href="#specialty" class="hover:text-gold-400 transition-colors uppercase py-1 border-b border-transparent hover:border-gold-400">Sur-Mesure</a>
-          <a href="#about" class="hover:text-gold-400 transition-colors uppercase py-1 border-b border-transparent hover:border-gold-400">About</a>
-          <a href="#store" class="hover:text-gold-400 transition-colors uppercase py-1 border-b border-transparent hover:border-gold-400">Store</a>
-          <a href="#news" class="hover:text-gold-400 transition-colors uppercase py-1 border-b border-transparent hover:border-gold-400">News</a>
-        </nav>
-
-        <!-- Action Button -->
-        <div class="hidden sm:flex items-center space-x-3">
-          <button
-            type="button"
-            id="contact-btn"
-            onclick="openContactModal()"
-            class="relative px-5 py-2.5 text-xs tracking-widest uppercase border transition-all duration-300 font-medium group backdrop-blur-sm"
-          >
-            <span class="flex items-center gap-2">
-              <span>お問い合わせ</span>
-              <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-            </span>
-          </button>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <div class="flex items-center lg:hidden">
+        <!-- Mobile Left: Menu Toggle Button -->
+        <div class="flex items-center lg:hidden w-10">
           <button
             type="button"
             id="mobile-menu-toggle"
-            class="p-2 transition-colors focus:outline-none"
+            class="p-2 -ml-2 transition-colors focus:outline-none"
             aria-label="メニューを開く"
           >
             <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,37 +52,144 @@ const { store } = siteConfig;
             </svg>
           </button>
         </div>
-      </div>
-    </div>
 
-    <!-- Mobile Drawer Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-noir-950/95 backdrop-blur-md border-b border-white/10 px-6 pt-4 pb-8 space-y-4 text-cream-100">
-      <div class="flex flex-col space-y-4 text-sm font-sans tracking-widest border-b border-white/10 pb-6">
-        <a href="#concept" class="mobile-nav-link hover:text-gold-400 py-1">CONCEPT <span class="text-xs text-stone-400 ml-2">こだわり</span></a>
-        <a href="#collection" class="mobile-nav-link hover:text-gold-400 py-1">MENU <span class="text-xs text-stone-400 ml-2">商品一覧</span></a>
-        <a href="#specialty" class="mobile-nav-link hover:text-gold-400 py-1">SUR-MESURE <span class="text-xs text-stone-400 ml-2">オーダーメイド</span></a>
-        <a href="#about" class="mobile-nav-link hover:text-gold-400 py-1">ABOUT <span class="text-xs text-stone-400 ml-2">職人の想い</span></a>
-        <a href="#store" class="mobile-nav-link hover:text-gold-400 py-1">STORE <span class="text-xs text-stone-400 ml-2">店舗情報</span></a>
-        <a href="#news" class="mobile-nav-link hover:text-gold-400 py-1">NEWS <span class="text-xs text-stone-400 ml-2">お知らせ</span></a>
-      </div>
-
-      <div class="pt-2 space-y-3">
-        <button
-          type="button"
-          onclick="openContactModal(); closeMobileMenu();"
-          class="w-full text-center py-3 bg-gold-500 text-noir-950 hover:bg-gold-400 text-xs tracking-widest uppercase font-medium transition-colors"
-        >
-          お問い合わせ
-        </button>
-        <a
-          href={`tel:${store.tel.replace(/-/g, '')}`}
-          class="block w-full text-center py-2.5 border border-white/30 text-cream-100 text-xs tracking-widest font-medium hover:border-gold-400 transition-colors"
-        >
-          お電話: {store.tel}
+        <!-- Logo: Centered on mobile, Left on desktop -->
+        <a href="#" class="group flex flex-col items-center lg:items-start text-center lg:text-left focus:outline-none flex-1 lg:flex-initial">
+          <span id="logo-title" class="font-serif-title tracking-mega-wide text-lg sm:text-xl lg:text-2xl font-light transition-colors uppercase drop-shadow-sm">
+            {store.nameEn}
+          </span>
+          <span id="logo-subtitle" class="text-[10px] sm:text-[11px] tracking-ultra-wide transition-colors font-sans uppercase opacity-85">
+            {store.subtitle}
+          </span>
         </a>
+
+        <!-- Desktop Nav -->
+        <nav id="desktop-nav" class="hidden lg:flex items-center space-x-8 text-[13px] font-sans tracking-widest transition-colors">
+          {navigation.links.map(link => (
+            <a href={link.href} class="hover:text-gold-400 transition-colors uppercase py-1 border-b border-transparent hover:border-gold-400">
+              {link.labelEn}
+            </a>
+          ))}
+        </nav>
+
+        <!-- Desktop Right: Contact Action Button -->
+        <div class="hidden lg:flex items-center space-x-3">
+          <button
+            type="button"
+            id="contact-btn"
+            onclick="openContactModal()"
+            class="relative px-5 py-2.5 text-[13px] tracking-widest uppercase border transition-all duration-300 font-medium group backdrop-blur-sm rounded-sm"
+          >
+            <span class="flex items-center gap-2">
+              <span>{navigation.contactBtnText}</span>
+              <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </span>
+          </button>
+        </div>
+
+        <!-- Mobile Right: Instagram Icon Link -->
+        <div class="flex items-center justify-end lg:hidden w-10">
+          <a
+            href={store.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            id="mobile-instagram-link"
+            class="p-2 -mr-2 transition-colors focus:outline-none hover:text-gold-400"
+            aria-label="Instagram"
+          >
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </header>
+</div>
+
+<!-- Fullscreen Mobile Menu Overlay (Slides in from Left, Text Fades in) -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-[100] bg-[#faf8f5] text-noir-900 flex flex-col justify-between overflow-y-auto px-6 py-5 lg:hidden shadow-2xl"
+  style="display: none;"
+>
+  <!-- Top Bar: Close Left, Logo Center, Instagram Right -->
+  <div class="menu-fade-top flex justify-between items-center h-20 flex-shrink-0 max-w-[1560px] mx-auto w-full border-b border-stone-200/60 pb-1">
+    <!-- Close Button -->
+    <div class="flex items-center w-10">
+      <button
+        type="button"
+        onclick="closeMobileMenu()"
+        class="p-2 -ml-2 text-stone-800 hover:text-gold-600 transition-colors focus:outline-none"
+        aria-label="メニューを閉じる"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Center Logo -->
+    <a href="#" onclick="closeMobileMenu()" class="group flex flex-col items-center text-center focus:outline-none flex-1">
+      <span class="font-serif-title tracking-mega-wide text-lg sm:text-xl font-light text-stone-900 uppercase">
+        {store.nameEn}
+      </span>
+      <span class="text-[10px] sm:text-[11px] tracking-ultra-wide text-stone-500 font-sans uppercase">
+        {store.subtitle}
+      </span>
+    </a>
+
+    <!-- Instagram Icon Link -->
+    <div class="flex items-center justify-end w-10">
+      <a
+        href={store.instagramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="p-2 -mr-2 text-stone-800 hover:text-gold-600 transition-colors"
+        aria-label="Instagram"
+      >
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Navigation Links (Left-aligned, Compact vertical spacing) -->
+  <nav class="flex-1 flex flex-col items-start justify-center py-5 space-y-2.5 my-auto w-full max-w-sm mx-auto pl-2">
+    {navigation.links.map((link, idx) => (
+      <a
+        href={link.href}
+        class="mobile-nav-link menu-fade-item group text-left flex flex-col items-start py-1.5 transition-all duration-300 w-full"
+      >
+        <span class="font-serif-title tracking-ultra-wide text-xl sm:text-2xl font-light text-stone-900 group-hover:text-gold-600 transition-colors uppercase">
+          {link.labelEn}
+        </span>
+        <span class="text-[11px] text-stone-500 tracking-wider font-serif-jp mt-0.5 group-hover:text-gold-600 transition-colors">
+          {link.labelJa}
+        </span>
+      </a>
+    ))}
+  </nav>
+
+  <!-- Bottom Action & Contact Info Area -->
+  <div class="menu-fade-bottom flex-shrink-0 w-full max-w-sm mx-auto pt-5 pb-4 space-y-3.5 border-t border-stone-300/70 text-center">
+    <button
+      type="button"
+      onclick="openContactModal(); closeMobileMenu();"
+      class="w-full py-3.5 bg-noir-900 hover:bg-gold-600 text-cream-50 text-xs font-sans tracking-widest uppercase font-medium transition-colors rounded-sm shadow-sm"
+    >
+      {navigation.mobileContactBtnText}
+    </button>
+    <div class="flex items-center justify-center gap-3 text-xs font-serif-jp text-stone-600 pt-1">
+      <a href={`tel:${store.tel.replace(/-/g, '')}`} class="hover:text-gold-600 transition-colors text-stone-800 font-medium flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        <span>Tel. {store.tel}</span>
+      </a>
+      <span class="text-stone-400">•</span>
+      <span>{store.businessHours}</span>
+    </div>
+  </div>
 </div>
 
 <script is:inline>
@@ -128,6 +200,7 @@ const { store } = siteConfig;
   const desktopNav = document.getElementById('desktop-nav');
   const contactBtn = document.getElementById('contact-btn');
   const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const mobileInstagram = document.getElementById('mobile-instagram-link');
 
   let lastScrollY = window.scrollY;
   let isAnnouncementVisible = true;
@@ -154,6 +227,11 @@ const { store } = siteConfig;
 
     mobileToggle.classList.add('text-cream-50');
     mobileToggle.classList.remove('text-stone-800');
+
+    if (mobileInstagram) {
+      mobileInstagram.classList.add('text-cream-50');
+      mobileInstagram.classList.remove('text-stone-800');
+    }
   }
 
   function setSolidScrolledTheme() {
@@ -177,6 +255,11 @@ const { store } = siteConfig;
 
     mobileToggle.classList.remove('text-cream-50');
     mobileToggle.classList.add('text-stone-800');
+
+    if (mobileInstagram) {
+      mobileInstagram.classList.remove('text-cream-50');
+      mobileInstagram.classList.add('text-stone-800');
+    }
   }
 
   function handleHeaderScroll() {
@@ -233,28 +316,39 @@ const { store } = siteConfig;
   window.addEventListener('scroll', handleHeaderScroll, { passive: true });
   handleHeaderScroll();
 
-  // Mobile Drawer Toggle
+  // Fullscreen Mobile Menu Controller (Slide-in from left, text fade-in)
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
 
-  function toggleMobileMenu() {
-    const isHidden = mobileMenu.classList.contains('hidden');
-    if (isHidden) {
-      mobileMenu.classList.remove('hidden');
-      iconOpen.classList.add('hidden');
-      iconClose.classList.remove('hidden');
-    } else {
+  window.openMobileMenu = function() {
+    if (!mobileMenu) return;
+    mobileMenu.style.display = 'flex';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        mobileMenu.classList.add('menu-open');
+      });
+    });
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeMobileMenu = function() {
+    if (!mobileMenu) return;
+    mobileMenu.classList.remove('menu-open');
+    setTimeout(() => {
+      if (!mobileMenu.classList.contains('menu-open')) {
+        mobileMenu.style.display = 'none';
+      }
+    }, 450);
+    document.body.style.overflow = '';
+  };
+
+  window.toggleMobileMenu = function() {
+    if (mobileMenu && mobileMenu.classList.contains('menu-open')) {
       closeMobileMenu();
+    } else {
+      openMobileMenu();
     }
-  }
-
-  function closeMobileMenu() {
-    mobileMenu.classList.add('hidden');
-    iconOpen.classList.remove('hidden');
-    iconClose.classList.add('hidden');
-  }
+  };
 
   toggleBtn?.addEventListener('click', toggleMobileMenu);
 
@@ -262,3 +356,59 @@ const { store } = siteConfig;
     link.addEventListener('click', closeMobileMenu);
   });
 </script>
+
+<style>
+  /* Fullscreen menu container slide-in from left */
+  #mobile-menu {
+    transform: translateX(-100%);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
+  #mobile-menu.menu-open {
+    transform: translateX(0);
+  }
+
+  /* Top bar fade-in */
+  #mobile-menu .menu-fade-top {
+    opacity: 0;
+    transition: opacity 0.35s ease 0.1s;
+  }
+  #mobile-menu.menu-open .menu-fade-top {
+    opacity: 1;
+  }
+
+  /* Navigation items staggered fade-in with subtle upward glide */
+  #mobile-menu .menu-fade-item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  #mobile-menu.menu-open .menu-fade-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger delays for elegant editorial reveal */
+  #mobile-menu.menu-open .menu-fade-item:nth-child(1) { transition-delay: 0.15s; }
+  #mobile-menu.menu-open .menu-fade-item:nth-child(2) { transition-delay: 0.20s; }
+  #mobile-menu.menu-open .menu-fade-item:nth-child(3) { transition-delay: 0.25s; }
+  #mobile-menu.menu-open .menu-fade-item:nth-child(4) { transition-delay: 0.30s; }
+  #mobile-menu.menu-open .menu-fade-item:nth-child(5) { transition-delay: 0.35s; }
+  #mobile-menu.menu-open .menu-fade-item:nth-child(6) { transition-delay: 0.40s; }
+
+  /* Bottom actions fade-in */
+  #mobile-menu .menu-fade-bottom {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
+    will-change: opacity, transform;
+  }
+
+  #mobile-menu.menu-open .menu-fade-bottom {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

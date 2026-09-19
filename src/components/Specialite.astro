@@ -4,7 +4,7 @@ const { specialite: specConfig } = siteConfig.images;
 const { specialite: specText } = siteConfig.content;
 ---
 
-<section id="specialty" class="relative bg-[#faf7f2] text-stone-900 border-t border-stone-200/80">
+<section id="specialty" class="py-24 sm:py-32 bg-cream-50 text-noir-900 border-t border-stone-200/60 relative">
   <style>
     /* Sticky behavior for the content side on desktop */
     @media screen and (min-width: 1024px) {
@@ -19,18 +19,16 @@ const { specialite: specText } = siteConfig.content;
       }
     }
 
-    /* Images gallery grid styling matching Yann Couvreur */
+    /* Images gallery grid styling */
     .yc-images-gallery {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      padding: 10px 0;
+      gap: 12px;
     }
 
     @media screen and (min-width: 640px) {
       .yc-images-gallery {
-        gap: 12px;
-        padding: 12px 0;
+        gap: 16px;
       }
     }
 
@@ -40,6 +38,7 @@ const { specialite: specText } = siteConfig.content;
       overflow: hidden;
       aspect-ratio: 4 / 5;
       background-color: #ede7de;
+      border-radius: 2px;
     }
 
     /* 3rd and 6th items span 2 columns with 3:2 panoramic aspect ratio */
@@ -53,7 +52,7 @@ const { specialite: specText } = siteConfig.content;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .yc-gallery-item:hover img {
@@ -66,11 +65,12 @@ const { specialite: specText } = siteConfig.content;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 2.5rem 1.25rem 1rem;
-      background: linear-gradient(to top, rgba(15, 12, 10, 0.78) 0%, rgba(15, 12, 10, 0.35) 60%, transparent 100%);
+      padding: 2.5rem 1.25rem 1.25rem;
+      background: linear-gradient(to top, rgba(15, 12, 10, 0.82) 0%, rgba(15, 12, 10, 0.35) 60%, transparent 100%);
       color: #faf7f2;
       text-align: center;
       transition: all 0.3s ease;
+      pointer-events: none;
     }
   </style>
 
@@ -95,21 +95,23 @@ const { specialite: specText } = siteConfig.content;
           </p>
 
           <!-- Occasions Tags -->
-          <div class="flex flex-wrap justify-center gap-2 pt-1 pb-2">
-            <span class="text-[11px] font-sans tracking-wider px-3 py-1 bg-cream-200/80 text-stone-700 rounded-sm"># 誕生日</span>
-            <span class="text-[11px] font-sans tracking-wider px-3 py-1 bg-cream-200/80 text-stone-700 rounded-sm"># クリスマス</span>
-            <span class="text-[11px] font-sans tracking-wider px-3 py-1 bg-cream-200/80 text-stone-700 rounded-sm"># アニバーサリー</span>
-            <span class="text-[11px] font-sans tracking-wider px-3 py-1 bg-cream-200/80 text-stone-700 rounded-sm"># ウェディング</span>
-          </div>
+          {specText.tags && (
+            <div class="flex flex-wrap justify-center gap-2 pt-1 pb-2">
+              {specText.tags.map((tag: string) => (
+                <span class="text-[11px] font-sans tracking-wider px-3 py-1 bg-cream-200/80 text-stone-700 rounded-sm border border-stone-300/40">{tag}</span>
+              ))}
+            </div>
+          )}
 
           <!-- Reservation Button -->
           <div class="pt-2">
             <button
               type="button"
               onclick="openContactModal('ホールケーキ・オーダーメイドのご予約・ご相談')"
-              class="w-full sm:w-auto px-8 py-3.5 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors font-medium rounded-sm shadow-sm"
+              class="w-full sm:w-auto px-8 py-3.5 bg-noir-900 text-cream-50 text-xs font-sans tracking-widest uppercase hover:bg-gold-600 transition-colors font-medium rounded-sm shadow-sm inline-flex items-center justify-center gap-2 group"
             >
-              {specText.catalogBtn}
+              <span>{specText.catalogBtn}</span>
+              <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
         </div>
@@ -119,14 +121,21 @@ const { specialite: specText } = siteConfig.content;
       <div class="lg:col-span-7 py-8 sm:py-12 lg:py-16">
         <div class="yc-images-gallery">
           {specConfig.items.map((item) => (
-            <div class="yc-gallery-item group cursor-pointer" onclick="openContactModal('ホールケーキ・オーダーメイドのご予約・ご相談')">
+            <div class="yc-gallery-item group cursor-pointer shadow-sm" onclick="openContactModal('ホールケーキ・オーダーメイドのご予約・ご相談')">
               <img
                 src={item.image}
                 alt={item.title}
                 loading="lazy"
                 class="w-full h-full object-cover"
               />
-              <div class="yc-gallery-caption">
+              <!-- Subtle Monochrome Hover Overlay matching ProductSection & Instagram -->
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-white shadow-lg transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                  <span class="text-xs font-serif-jp tracking-wider text-white/95 font-medium">{specText.hoverBadge}</span>
+                  <svg class="w-3.5 h-3.5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </div>
+              </div>
+              <div class="yc-gallery-caption z-20">
                 <p class="text-xs sm:text-sm font-sans tracking-mega-wide uppercase font-medium drop-shadow-sm">
                   {item.title}
                 </p>
