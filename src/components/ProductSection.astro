@@ -36,8 +36,8 @@ const { menu } = siteConfig.content;
       ))}
     </div>
 
-    <!-- Products Grid (Image-centric, Large scale, Minimalist text below) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 sm:gap-x-10 sm:gap-y-16 lg:gap-x-12 lg:gap-y-20" id="products-grid">
+    <!-- Products Grid (Image-centric, 4 columns on large screens, Minimalist text below) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:gap-x-8 lg:gap-y-16" id="products-grid">
       {products.map(product => (
         <div
           class="product-item group cursor-pointer flex flex-col"
@@ -45,7 +45,7 @@ const { menu } = siteConfig.content;
           data-product-id={product.id}
           onclick={`openProductModal('${product.id}')`}
         >
-          <!-- Large Image Thumbnail (Square / Tall aspect ratio) -->
+          <!-- Large Image Thumbnail -->
           <div class="relative aspect-[4/3] sm:aspect-square overflow-hidden bg-stone-100 mb-3.5">
             <img
               src={product.image}
@@ -53,16 +53,6 @@ const { menu } = siteConfig.content;
               loading="lazy"
               class="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
             />
-            {product.isSpecialite && (
-              <div class="absolute top-3.5 left-3.5 bg-noir-950/85 backdrop-blur-sm text-gold-400 text-[10px] font-sans tracking-widest uppercase px-2.5 py-1 border border-gold-400/30 shadow-sm">
-                Specialty
-              </div>
-            )}
-            {product.isSeasonal && (
-              <div class="absolute top-3.5 left-3.5 bg-berry-700/90 backdrop-blur-sm text-cream-50 text-[10px] font-sans tracking-widest uppercase px-2.5 py-1 shadow-sm">
-                Seasonal
-              </div>
-            )}
             <!-- Subtle Hover Indicator -->
             <div class="absolute inset-0 bg-noir-950/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
               <span class="px-4 py-1.5 bg-cream-50/90 text-noir-900 text-[11px] font-sans tracking-widest uppercase font-medium backdrop-blur-sm shadow-sm">
