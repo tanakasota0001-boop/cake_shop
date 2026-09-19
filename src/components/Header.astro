@@ -3,10 +3,10 @@ import { siteConfig } from '../data/siteConfig';
 const { store } = siteConfig;
 ---
 
-<!-- Header Wrapper: Fixed overlay with dynamic translateY for show/hide behavior -->
-<div id="header-wrapper" class="fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ease-out text-cream-50 bg-transparent">
-  <!-- Announcement Bar (Desktop) - Smooth collapsible top bar, hides immediately on scroll -->
-  <div id="announcement-bar" class="text-xs px-4 sm:px-6 lg:px-12 border-b border-stone-300/80 hidden md:block bg-[#f3ecd8] text-stone-800 shadow-sm transition-all duration-300 ease-in-out overflow-hidden py-2.5 max-h-16 opacity-100">
+<!-- Header Wrapper: Fixed overlay with smooth translation for show/hide behavior -->
+<div id="header-wrapper" class="fixed top-0 left-0 right-0 z-50 text-cream-50 bg-transparent">
+  <!-- Announcement Bar (Desktop) - Directly scrolls away with page scroll -->
+  <div id="announcement-bar" class="text-xs px-4 sm:px-6 lg:px-12 border-b border-stone-300/80 hidden md:block bg-[#f3ecd8] text-stone-800 shadow-sm overflow-hidden py-2.5 will-change-transform">
     <div class="max-w-[1560px] mx-auto flex justify-between items-center tracking-widest font-serif-jp text-[11px]">
       <div class="flex items-center space-x-6">
         <span class="flex items-center gap-1.5 text-stone-800 font-medium">
@@ -181,44 +181,46 @@ const { store } = siteConfig;
 
   function handleHeaderScroll() {
     const currentScrollY = window.scrollY;
-    // Exactly at the very top of page (for showing announcement bar)
-    const isAtTop = currentScrollY <= 8;
+    const barHeight = announcementBar ? announcementBar.offsetHeight : 0;
 
-    // 1. Hide announcement bar immediately when scrolling away from top (> 8px)
-    if (announcementBar) {
-      if (isAtTop) {
-        if (!isAnnouncementVisible) {
-          announcementBar.classList.remove('max-h-0', 'py-0', 'opacity-0', 'border-b-0');
-          announcementBar.classList.add('max-h-16', 'py-2.5', 'opacity-100', 'border-b');
-          isAnnouncementVisible = true;
-        }
-      } else {
-        if (isAnnouncementVisible) {
-          announcementBar.classList.remove('max-h-16', 'py-2.5', 'opacity-100', 'border-b');
-          announcementBar.classList.add('max-h-0', 'py-0', 'opacity-0', 'border-b-0');
-          isAnnouncementVisible = false;
-        }
+    // 1. Top Zone (0px to 140px):
+    // The announcement bar slides up strictly with scroll position (natural 1:1 scroll feel)
+    if (currentScrollY <= 140) {
+      if (announcementBar) {
+        // Translate announcement bar smoothly as user scrolls
+        const translateY = -Math.min(currentScrollY, barHeight);
+        announcementBar.style.transform = `translateY(${translateY}px)`;
       }
-    }
 
-    // 2. Main menu header scroll down/up behavior:
-    // Lingers longer before hiding navigation menu (past 140px)
-    const isScrollingDown = currentScrollY > lastScrollY + 4 && currentScrollY > 140;
-    const isScrollingUp = currentScrollY < lastScrollY - 4;
+      // Main header stays fixed directly below the moving announcement bar
+      const headerTranslate = -Math.min(currentScrollY, barHeight);
+      headerWrapper.style.transition = 'none';
+      headerWrapper.style.transform = `translateY(${headerTranslate}px)`;
 
-    if (isScrollingDown) {
-      // Smooth slide out upwards without changing background color
-      headerWrapper.style.transform = 'translateY(-100%)';
-    } else if (isScrollingUp || isAtTop) {
-      // Slide in downwards smoothly
-      headerWrapper.style.transform = 'translateY(0)';
-    }
+      // Transparent theme at the very top
+      if (currentScrollY <= 20) {
+        setTransparentTheme();
+      }
+    } else {
+      // 2. Below Top Zone (> 140px):
+      // Announcement bar is fully out of view
+      if (announcementBar) {
+        announcementBar.style.transform = `translateY(-${barHeight}px)`;
+      }
 
-    // 3. Theme styling: Keep transparent on top/hero. When scrolling UP from below, apply solid theme
-    if (isAtTop) {
-      setTransparentTheme();
-    } else if (isScrollingUp && currentScrollY > 50) {
-      setSolidScrolledTheme();
+      headerWrapper.style.transition = 'transform 0.4s ease-out, background-color 0.4s ease-out';
+
+      const isScrollingDown = currentScrollY > lastScrollY + 4;
+      const isScrollingUp = currentScrollY < lastScrollY - 4;
+
+      if (isScrollingDown) {
+        // Hide entire header when scrolling down
+        headerWrapper.style.transform = 'translateY(-100%)';
+      } else if (isScrollingUp) {
+        // Show navigation menu on scroll up (offset announcement bar so only menu shows)
+        headerWrapper.style.transform = `translateY(-${barHeight}px)`;
+        setSolidScrolledTheme();
+      }
     }
 
     lastScrollY = Math.max(0, currentScrollY);
