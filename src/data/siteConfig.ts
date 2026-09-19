@@ -134,12 +134,12 @@ export const siteConfig = {
 
   // ==========================================
   // 3. 各セクションの文章・見出し (Content Texts)
-  // 英語タイトル (titleEn) ＋ 日本語サブタイトル (subtitleJa) で統一
+  // 英語タイトル上部 (badge) を日本語にし、英語タイトル (titleEn) と組み合わせ
   // ==========================================
   content: {
     concept: {
-      badge: "Philosophy & Craft",
-      titleEn: "Our Concept",
+      badge: "こだわり",
+      titleEn: "Concept",
       subtitleJa: "素材と技が織りなす、洗練の洋菓子。",
       lead: "一口で心満たされる、記憶に残るスイーツを。",
       paragraphs: [
@@ -166,13 +166,13 @@ export const siteConfig = {
     },
 
     specialite: {
-      badge: "Signature Sweets",
+      badge: "看板商品",
       titleEn: "Specialty",
       subtitleJa: "素材と技を極めた、自慢のスペシャリテ",
     },
 
     menu: {
-      badge: "Our Menu",
+      badge: "商品一覧",
       titleEn: "Menu & Collection",
       subtitleJa: "定番のケーキから手土産に最適な焼き菓子まで",
       noticeBoxTitle: "【地方発送・ギフト詰め合わせ・法人様のご注文について】",
@@ -181,8 +181,8 @@ export const siteConfig = {
     },
 
     about: {
-      badge: "Craftsmanship",
-      titleEn: "About Chef & Atelier",
+      badge: "職人の想い",
+      titleEn: "About",
       subtitleJa: "毎日、心をこめて。美味しさの先にある感動を。",
       paragraphs: [
         "幼い頃に魅了された洋菓子の美しさと、オーブンから漂う香ばしいバターの香り。確かな技術を土台にしながら、私たちが何よりも大切にしているのは「作り手自身が心から納得できるお菓子づくり」です。",
@@ -195,17 +195,17 @@ export const siteConfig = {
     },
 
     news: {
-      badge: "News & Topics",
-      titleEn: "News & Topics",
+      badge: "お知らせ",
+      titleEn: "News",
       subtitleJa: "最新のお知らせ・季節のご案内",
-      instagramBadge: "Social Media",
-      instagramTitleEn: "Instagram Gallery",
+      instagramBadge: "インスタグラム",
+      instagramTitleEn: "Instagram",
       instagramSubtitleJa: "公式インスタグラムの最新投稿",
       instagramCta: "Instagramを見る"
     },
 
     store: {
-      badge: "Store & Access",
+      badge: "店舗案内",
       titleEn: "Store & Access",
       subtitleJa: "店舗情報・営業案内・交通アクセス",
       calendarTitle: "営業カレンダー",
@@ -214,9 +214,9 @@ export const siteConfig = {
     },
 
     contact: {
-      badge: "Contact Us",
-      titleEn: "Contact Us",
-      subtitleJa: "お問い合わせ・ご相談",
+      badge: "お問い合わせ",
+      titleEn: "Contact",
+      subtitleJa: "商品やギフトのご相談・ご注文など",
       desc: "商品やギフトの地方発送、法人様向けご注文など、お気軽にお問い合わせください。",
       phoneNoticeTitle: "【お急ぎ・当日在庫の確認はお電話にて】"
     }
