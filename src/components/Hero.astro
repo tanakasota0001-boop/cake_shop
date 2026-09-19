@@ -4,7 +4,7 @@ const { heroSlides } = siteConfig.images;
 const { tagline } = siteConfig.store;
 ---
 
-<section class="relative h-[85vh] min-h-[560px] max-h-[900px] w-full overflow-hidden bg-noir-950">
+<section class="relative h-screen min-h-[640px] max-h-[960px] w-full overflow-hidden bg-noir-950">
   <!-- Slides Container -->
   <div id="hero-slider" class="relative w-full h-full">
     {heroSlides.map((slide, index) => (
@@ -49,7 +49,7 @@ const { tagline } = siteConfig.store;
   </div>
 
   <!-- Vertical Calligraphy Accent (Right Side) -->
-  <div class="hidden lg:block absolute top-24 right-12 z-20 pointer-events-none">
+  <div class="hidden lg:block absolute top-36 right-12 z-20 pointer-events-none">
     <div class="writing-vertical-rl font-serif-jp text-xs tracking-ultra-wide text-cream-200/60 select-none border-l border-cream-200/20 pl-4 py-4 backdrop-blur-sm">
       {tagline}
     </div>
