@@ -36,63 +36,54 @@ const { menu } = siteConfig.content;
       ))}
     </div>
 
-    <!-- Products Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10" id="products-grid">
+    <!-- Products Grid (Image-centric, Large scale, Minimalist text below) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 sm:gap-x-10 sm:gap-y-16 lg:gap-x-12 lg:gap-y-20" id="products-grid">
       {products.map(product => (
         <div
-          class="product-item group cursor-pointer flex flex-col bg-cream-100 border border-stone-200/80 hover:border-gold-400/60 transition-all duration-300 shadow-sm hover:shadow-xl rounded-sm overflow-hidden"
+          class="product-item group cursor-pointer flex flex-col"
           data-category={product.category}
           data-product-id={product.id}
           onclick={`openProductModal('${product.id}')`}
         >
-          <!-- Thumbnail with hover zoom -->
-          <div class="relative aspect-square overflow-hidden bg-stone-200">
+          <!-- Large Image Thumbnail (Square / Tall aspect ratio) -->
+          <div class="relative aspect-[4/3] sm:aspect-square overflow-hidden bg-stone-100 mb-3.5">
             <img
               src={product.image}
               alt={product.name}
               loading="lazy"
-              class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+              class="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
             />
             {product.isSpecialite && (
-              <div class="absolute top-3 left-3 bg-noir-900/90 text-gold-400 text-[10px] font-sans tracking-widest uppercase px-2.5 py-0.5 border border-gold-400/30">
+              <div class="absolute top-3.5 left-3.5 bg-noir-950/85 backdrop-blur-sm text-gold-400 text-[10px] font-sans tracking-widest uppercase px-2.5 py-1 border border-gold-400/30 shadow-sm">
                 Specialty
               </div>
             )}
             {product.isSeasonal && (
-              <div class="absolute top-3 left-3 bg-berry-700 text-cream-50 text-[10px] font-sans tracking-widest uppercase px-2.5 py-0.5">
+              <div class="absolute top-3.5 left-3.5 bg-berry-700/90 backdrop-blur-sm text-cream-50 text-[10px] font-sans tracking-widest uppercase px-2.5 py-1 shadow-sm">
                 Seasonal
               </div>
             )}
-            <!-- Quick View Overlay -->
-            <div class="absolute inset-0 bg-noir-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <span class="px-4 py-1.5 bg-cream-50/90 text-noir-900 text-xs font-sans tracking-widest uppercase font-medium backdrop-blur-sm shadow-md">
-                詳細を見る
+            <!-- Subtle Hover Indicator -->
+            <div class="absolute inset-0 bg-noir-950/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <span class="px-4 py-1.5 bg-cream-50/90 text-noir-900 text-[11px] font-sans tracking-widest uppercase font-medium backdrop-blur-sm shadow-sm">
+                View Detail
               </span>
             </div>
           </div>
 
-          <!-- Card Content -->
-          <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
-            <div>
-              <span class="text-[10px] font-sans tracking-widest text-stone-400 uppercase block mb-1">
-                {product.categoryLabel}
-              </span>
-              <h3 class="text-base font-serif-jp font-medium text-stone-900 group-hover:text-gold-600 transition-colors line-clamp-1">
+          <!-- Minimalist Info Below Image (Name & Price Only, Compact & Refined) -->
+          <div class="flex justify-between items-baseline gap-3 pt-1">
+            <div class="min-w-0 flex-1">
+              <h3 class="text-sm sm:text-base font-serif-jp text-stone-900 group-hover:text-gold-600 transition-colors font-medium truncate">
                 {product.name}
               </h3>
-              <p class="text-[11px] font-sans text-stone-500 tracking-wider truncate">
+              <p class="text-[11px] font-sans text-stone-400 tracking-wider truncate mt-0.5">
                 {product.englishName}
               </p>
             </div>
-
-            <div class="pt-2 border-t border-stone-200 flex justify-between items-center text-xs">
-              <span class="font-sans font-medium text-stone-800 tracking-wider">
-                {product.price}
-              </span>
-              <span class="text-gold-600 group-hover:translate-x-1 transition-transform">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </span>
-            </div>
+            <span class="text-xs sm:text-sm font-sans font-medium text-stone-700 tracking-wider flex-shrink-0">
+              {product.price}
+            </span>
           </div>
         </div>
       ))}
