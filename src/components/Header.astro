@@ -5,8 +5,8 @@ const { store } = siteConfig;
 
 <!-- Header Wrapper: Fixed overlay so Hero is visible behind -->
 <div id="header-wrapper" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 text-cream-50 bg-transparent">
-  <!-- Announcement Bar (Desktop) -->
-  <div id="announcement-bar" class="text-xs py-2 px-4 border-b border-white/15 hidden md:block bg-noir-950/40 backdrop-blur-sm transition-all duration-300">
+  <!-- Announcement Bar (Desktop) - Always solid background color -->
+  <div id="announcement-bar" class="text-xs py-2 px-4 border-b border-white/10 hidden md:block bg-noir-900 text-cream-200">
     <div class="max-w-7xl mx-auto flex justify-between items-center tracking-widest font-serif-jp">
       <div class="flex items-center space-x-6">
         <span class="flex items-center gap-1.5 opacity-90">
@@ -137,11 +137,6 @@ const { store } = siteConfig;
       headerWrapper.classList.remove('text-cream-50', 'bg-transparent');
       headerWrapper.classList.add('text-noir-900', 'bg-cream-50/95', 'backdrop-blur-md', 'shadow-sm');
 
-      if (announcementBar) {
-        announcementBar.classList.remove('border-white/15', 'bg-noir-950/40');
-        announcementBar.classList.add('border-stone-200', 'bg-noir-900');
-      }
-
       logoTitle.classList.remove('text-cream-50');
       logoTitle.classList.add('text-noir-900');
 
@@ -160,11 +155,6 @@ const { store } = siteConfig;
       // Transparent background inside Hero section
       headerWrapper.classList.add('text-cream-50', 'bg-transparent');
       headerWrapper.classList.remove('text-noir-900', 'bg-cream-50/95', 'backdrop-blur-md', 'shadow-sm');
-
-      if (announcementBar) {
-        announcementBar.classList.add('border-white/15', 'bg-noir-950/40');
-        announcementBar.classList.remove('border-stone-200', 'bg-noir-900');
-      }
 
       logoTitle.classList.add('text-cream-50');
       logoTitle.classList.remove('text-noir-900');
