@@ -36,8 +36,8 @@ const { menu } = siteConfig.content;
       ))}
     </div>
 
-    <!-- Products Grid (Image-centric, 4 columns on large screens, Minimalist text below) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 sm:gap-x-4 lg:gap-x-5 gap-y-8 sm:gap-y-10 lg:gap-y-12" id="products-grid">
+    <!-- Products Grid (Image-centric, 2 cols on mobile, 4 cols on large screens) -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 sm:gap-x-4 lg:gap-x-5 gap-y-6 sm:gap-y-10 lg:gap-y-12" id="products-grid">
       {products.map(product => (
         <div
           class="product-item group cursor-pointer flex flex-col"
@@ -46,7 +46,7 @@ const { menu } = siteConfig.content;
           onclick={`openProductModal('${product.id}')`}
         >
           <!-- Portrait Image Thumbnail -->
-          <div class="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] overflow-hidden bg-stone-100 mb-3.5">
+          <div class="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] overflow-hidden bg-stone-100 mb-2.5 sm:mb-3.5">
             <img
               src={product.image}
               alt={product.name}
@@ -55,19 +55,19 @@ const { menu } = siteConfig.content;
             />
             <!-- Subtle Hover Indicator -->
             <div class="absolute inset-0 bg-noir-950/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <span class="px-4 py-1.5 bg-cream-50/90 text-noir-900 text-[11px] font-sans tracking-widest uppercase font-medium backdrop-blur-sm shadow-sm">
+              <span class="px-3 py-1 sm:px-4 sm:py-1.5 bg-cream-50/90 text-noir-900 text-[10px] sm:text-[11px] font-sans tracking-widest uppercase font-medium backdrop-blur-sm shadow-sm">
                 View Detail
               </span>
             </div>
           </div>
 
           <!-- Minimalist Info Below Image (Name & Price Only, Compact & Refined) -->
-          <div class="flex justify-between items-baseline gap-3 pt-1">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline gap-1 sm:gap-3 pt-0.5 sm:pt-1">
             <div class="min-w-0 flex-1">
-              <h3 class="text-sm sm:text-base font-serif-jp text-stone-900 group-hover:text-gold-600 transition-colors font-medium truncate">
+              <h3 class="text-xs sm:text-base font-serif-jp text-stone-900 group-hover:text-gold-600 transition-colors font-medium truncate">
                 {product.name}
               </h3>
-              <p class="text-[11px] font-sans text-stone-400 tracking-wider truncate mt-0.5">
+              <p class="text-[10px] sm:text-[11px] font-sans text-stone-400 tracking-wider truncate mt-0.5">
                 {product.englishName}
               </p>
             </div>
