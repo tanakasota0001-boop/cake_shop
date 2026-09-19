@@ -35,6 +35,15 @@ const { store } = siteConfig;
             <p>{p}</p>
           ))}
         </div>
+
+        <!-- Owner Chef Signature Right Bottom -->
+        <div class="pt-4 text-right">
+          <p class="text-xs font-serif-jp tracking-widest text-stone-500">{aboutText.chefTitle}</p>
+          <p class="text-lg sm:text-xl font-serif-jp tracking-wider text-stone-900 font-medium mt-1">
+            {aboutText.chefName}
+            {aboutText.chefNameEn && <span class="text-xs font-sans text-stone-400 tracking-widest uppercase ml-2">{aboutText.chefNameEn}</span>}
+          </p>
+        </div>
       </div>
     </div>
   </div>

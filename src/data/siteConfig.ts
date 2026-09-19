@@ -213,8 +213,9 @@ export const siteConfig = {
         "お召し上がりいただいた瞬間に思わず笑みがこぼれ、「またこのケーキを食べたい」と思い出していただけること。それがパティシエとしての何よりの歓びです。",
         "心を込めて焼き上げる洋菓子を、どうぞごゆっくりお楽しみください。"
       ],
-      atelierLabel: "Bakery & Kitchen",
-      englishTagline: "Artisan Pastry & Cakes"
+      chefTitle: "オーナーシェフ",
+      chefName: "田中 奏太",
+      chefNameEn: "Sota Tanaka"
     },
 
     news: {
