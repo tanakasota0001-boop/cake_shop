@@ -62,15 +62,10 @@ const { menu } = siteConfig.content;
           </div>
 
           <!-- Minimalist Info Below Image (Name & Price Only, Compact & Refined) -->
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-baseline gap-1 sm:gap-3 pt-0.5 sm:pt-1">
-            <div class="min-w-0 flex-1">
-              <h3 class="text-xs sm:text-base font-serif-jp text-stone-900 group-hover:text-gold-600 transition-colors font-medium truncate">
-                {product.name}
-              </h3>
-              <p class="text-[10px] sm:text-[11px] font-sans text-stone-400 tracking-wider truncate mt-0.5">
-                {product.englishName}
-              </p>
-            </div>
+          <div class="flex justify-between items-baseline gap-2 sm:gap-3 pt-1">
+            <h3 class="min-w-0 flex-1 text-xs sm:text-base font-serif-jp text-stone-900 group-hover:text-gold-600 transition-colors font-medium truncate">
+              {product.name}
+            </h3>
             <span class="text-xs sm:text-sm font-sans font-medium text-stone-700 tracking-wider flex-shrink-0">
               {product.price}
             </span>
@@ -130,7 +125,6 @@ const { menu } = siteConfig.content;
           <div>
             <span id="modal-category" class="text-[11px] font-sans tracking-ultra-wide uppercase text-gold-600 block mb-1"></span>
             <h3 id="modal-title" class="text-2xl font-serif-jp text-noir-900 font-medium leading-snug"></h3>
-            <p id="modal-english-name" class="text-xs font-sans tracking-wider text-stone-500 mt-1"></p>
           </div>
 
           <div class="text-lg font-sans font-medium text-stone-900 border-b border-stone-200 pb-3">
@@ -193,7 +187,6 @@ const { menu } = siteConfig.content;
   const modalImage = document.getElementById('modal-image');
   const modalCategory = document.getElementById('modal-category');
   const modalTitle = document.getElementById('modal-title');
-  const modalEnglishName = document.getElementById('modal-english-name');
   const modalPrice = document.getElementById('modal-price');
   const modalDesc = document.getElementById('modal-desc');
 
@@ -205,7 +198,6 @@ const { menu } = siteConfig.content;
     modalImage.alt = p.name;
     modalCategory.textContent = p.categoryLabel;
     modalTitle.textContent = p.name;
-    modalEnglishName.textContent = p.englishName;
     modalPrice.textContent = p.price;
     modalDesc.textContent = p.description;
 
