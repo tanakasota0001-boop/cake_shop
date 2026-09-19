@@ -131,18 +131,66 @@ const { store } = siteConfig;
 
   let lastScrollY = window.scrollY;
   let isAnnouncementVisible = true;
+  let isScrolledTheme = false;
+
+  function setTransparentTheme() {
+    if (!isScrolledTheme) return;
+    isScrolledTheme = false;
+
+    headerWrapper.classList.add('text-cream-50', 'bg-transparent');
+    headerWrapper.classList.remove('text-noir-900', 'bg-cream-50/95', 'backdrop-blur-md', 'shadow-sm');
+
+    logoTitle.classList.add('text-cream-50');
+    logoTitle.classList.remove('text-noir-900');
+
+    logoSubtitle.classList.add('text-cream-200');
+    logoSubtitle.classList.remove('text-stone-500');
+
+    desktopNav.classList.add('text-cream-100');
+    desktopNav.classList.remove('text-stone-700');
+
+    contactBtn.classList.add('border-white/60', 'text-cream-50', 'hover:bg-cream-50', 'hover:text-noir-900');
+    contactBtn.classList.remove('border-stone-800', 'text-noir-900', 'hover:bg-noir-900', 'hover:text-cream-50');
+
+    mobileToggle.classList.add('text-cream-50');
+    mobileToggle.classList.remove('text-stone-800');
+  }
+
+  function setSolidScrolledTheme() {
+    if (isScrolledTheme) return;
+    isScrolledTheme = true;
+
+    headerWrapper.classList.remove('text-cream-50', 'bg-transparent');
+    headerWrapper.classList.add('text-noir-900', 'bg-cream-50/95', 'backdrop-blur-md', 'shadow-sm');
+
+    logoTitle.classList.remove('text-cream-50');
+    logoTitle.classList.add('text-noir-900');
+
+    logoSubtitle.classList.remove('text-cream-200');
+    logoSubtitle.classList.add('text-stone-500');
+
+    desktopNav.classList.remove('text-cream-100');
+    desktopNav.classList.add('text-stone-700');
+
+    contactBtn.classList.remove('border-white/60', 'text-cream-50', 'hover:bg-cream-50', 'hover:text-noir-900');
+    contactBtn.classList.add('border-stone-800', 'text-noir-900', 'hover:bg-noir-900', 'hover:text-cream-50');
+
+    mobileToggle.classList.remove('text-cream-50');
+    mobileToggle.classList.add('text-stone-800');
+  }
 
   function handleHeaderScroll() {
     const currentScrollY = window.scrollY;
-    const isAtTop = currentScrollY <= 20;
-    const isScrollingDown = currentScrollY > lastScrollY && currentScrollY > 80;
+    const isAtTop = currentScrollY <= 15;
+    const isScrollingDown = currentScrollY > lastScrollY && currentScrollY > 15;
+    const isScrollingUp = currentScrollY < lastScrollY;
 
     // 1. Hide header on scroll down, show on scroll up
     if (isScrollingDown) {
-      // Hide entire header when scrolling down
+      // Smooth slide out upwards without changing background color
       headerWrapper.style.transform = 'translateY(-100%)';
     } else {
-      // Show header when scrolling up
+      // Slide in downwards
       headerWrapper.style.transform = 'translateY(0)';
     }
 
@@ -163,49 +211,19 @@ const { store } = siteConfig;
       }
     }
 
-    // 3. Theme styling: transparent when at top hero, solid/blur when scrolled
-    if (currentScrollY > 40) {
-      // Scrolled state: Solid cream background with dark text
-      headerWrapper.classList.remove('text-cream-50', 'bg-transparent');
-      headerWrapper.classList.add('text-noir-900', 'bg-cream-50/95', 'backdrop-blur-md', 'shadow-sm');
-
-      logoTitle.classList.remove('text-cream-50');
-      logoTitle.classList.add('text-noir-900');
-
-      logoSubtitle.classList.remove('text-cream-200');
-      logoSubtitle.classList.add('text-stone-500');
-
-      desktopNav.classList.remove('text-cream-100');
-      desktopNav.classList.add('text-stone-700');
-
-      contactBtn.classList.remove('border-white/60', 'text-cream-50', 'hover:bg-cream-50', 'hover:text-noir-900');
-      contactBtn.classList.add('border-stone-800', 'text-noir-900', 'hover:bg-noir-900', 'hover:text-cream-50');
-
-      mobileToggle.classList.remove('text-cream-50');
-      mobileToggle.classList.add('text-stone-800');
-    } else {
-      // Top/Hero state: Transparent header with light text
-      headerWrapper.classList.add('text-cream-50', 'bg-transparent');
-      headerWrapper.classList.remove('text-noir-900', 'bg-cream-50/95', 'backdrop-blur-md', 'shadow-sm');
-
-      logoTitle.classList.add('text-cream-50');
-      logoTitle.classList.remove('text-noir-900');
-
-      logoSubtitle.classList.add('text-cream-200');
-      logoSubtitle.classList.remove('text-stone-500');
-
-      desktopNav.classList.add('text-cream-100');
-      desktopNav.classList.remove('text-stone-700');
-
-      contactBtn.classList.add('border-white/60', 'text-cream-50', 'hover:bg-cream-50', 'hover:text-noir-900');
-      contactBtn.classList.remove('border-stone-800', 'text-noir-900', 'hover:bg-noir-900', 'hover:text-cream-50');
-
-      mobileToggle.classList.add('text-cream-50');
-      mobileToggle.classList.remove('text-stone-800');
+    // 3. Theme styling: Keep transparent on top/hero. When scrolling UP from below, apply solid theme
+    if (isAtTop) {
+      setTransparentTheme();
+    } else if (isScrollingUp && currentScrollY > 15) {
+      setSolidScrolledTheme();
     }
 
     lastScrollY = Math.max(0, currentScrollY);
   }
+
+  // Initial setup
+  isScrolledTheme = true;
+  setTransparentTheme();
 
   window.addEventListener('scroll', handleHeaderScroll, { passive: true });
   handleHeaderScroll();
